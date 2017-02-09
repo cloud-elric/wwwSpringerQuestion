@@ -1,0 +1,1 @@
+$('#test-image').uploadFile({'type':'video'});
