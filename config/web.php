@@ -16,17 +16,17 @@ $config = [
     		'session' => [
     				'timeout'=>3600 // Segundos que durara la sesion
     		],
-    		'assetManager' => [
-    				'bundles' => [
-    						'yii\bootstrap\BootstrapPluginAsset' => [
-    								'js'=>[]
-    						],
-    						'yii\bootstrap\BootstrapAsset' => [
-    								'css' => [],
-    						],
+//     		'assetManager' => [
+//     				'bundles' => [
+//     						'yii\bootstrap\BootstrapPluginAsset' => [
+//     								'js'=>[]
+//     						],
+//     						'yii\bootstrap\BootstrapAsset' => [
+//     								'css' => [],
+//     						],
     		
-    				],
-    		],
+//     				],
+//     		],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'KBI6OjMCowgwXJCMlZGkMY7SyGdyGb7sAB',
