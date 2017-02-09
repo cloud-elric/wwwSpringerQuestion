@@ -30,8 +30,8 @@ $this->registerCssFile ( '@web/css/register-v3.css', [
 			    ]) ?>
 			    
 				<?=Html::a('Login', ['login'])?>
-			<br>
-			<?=Html::a('Recuperar contraseña', ['peticion-pass'])?>
+				<br>
+				<?=Html::a('Recuperar contraseña', ['peticion-pass'])?>
 			
 			</div>
 		
