@@ -24,7 +24,33 @@ AppAsset::register($this);
 </head>
 <body>
 <?php $this->beginBody() ?>
-
+ <?php
+    NavBar::begin([
+        'brandLabel' => 'Springer',
+        'brandUrl' => ['site/ver-modulos'],
+        'options' => [
+            'class' => 'navbar-inverse',
+        ],
+    ]);
+    echo Nav::widget([
+        'options' => ['class' => 'navbar-nav navbar-right'],
+        'items' => [
+            Yii::$app->user->isGuest ? (
+                ['label' => 'Login', 'url' => ['/site/login']]
+            ) : (
+                '<li>'
+                . Html::beginForm(['/site/logout'], 'post', ['class' => 'navbar-form'])
+                . Html::submitButton(
+                    'Logout (' . Yii::$app->user->identity->txt_username . ')',
+                    ['class' => 'btn btn-link']
+                )
+                . Html::endForm()
+                . '</li>'
+            )
+        ],
+    ]);
+    NavBar::end();
+    ?>
 
         
         <?= $content ?>
