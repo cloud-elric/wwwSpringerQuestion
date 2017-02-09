@@ -10,16 +10,20 @@ $this->title = 'Registro';
 // $this->params['breadcrumbs'][] = ['label' => 'Ent Usuarios', 'url' => ['index']];
 // $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="ent-usuarios-create">
+<div class="panel">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+	<div class="panel-body">
 
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
+	    <h1><?= Html::encode($this->title) ?></h1>
+	
+	    <?= $this->render('_form', [
+	        'model' => $model,
+	    ]) ?>
+	    
+		<?=Html::a('Login', ['login'])?>
+	<br>
+	<?=Html::a('Recuperar contraseña', ['peticion-pass'])?>
+	
+	</div>
 
 </div>
-
-<?=Html::a('Login', ['login'])?>
-<br>
-<?=Html::a('Recuperar contraseña', ['peticion-pass'])?>
