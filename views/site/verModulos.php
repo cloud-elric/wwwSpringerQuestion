@@ -9,7 +9,7 @@ $this->registerCssFile ( '@web/webAssets/css/ver-modulos.css', [
 ] );
 ?>
 
-<div class="container">
+<div class="container ver-modulos">
 	<div class="row">
 		<?php
 		foreach ( $modulos as $modulo ) {
@@ -25,16 +25,19 @@ $this->registerCssFile ( '@web/webAssets/css/ver-modulos.css', [
 			?>
 			
 			<div class="col-md-4">
-			<div>
-			<?php
-			// Impresion de datos
-			echo Html::a ( $modulo->txt_nombre, [ 
-					'ver-preguntas',
-					'modulo' => $modulo->id_modulo 
-			] ) . '<br>';
-			echo $numPreguntasContestadas . '/' . $numPreguntas . '<br><br>';
-			?>
+			<a
+				href="<?=Yii::$app->urlManager->createAbsoluteUrl ( ['site/ver-preguntas', 'modulo'=>$modulo->id_modulo] )?>">
+				<div class="panel">
+					<div class="panel-body">
+						<h3><?=$modulo->txt_nombre?></h3>
+					</div>
+					<div class="panel-footer">
+						<p class="text-right">
+						<?=$numPreguntasContestadas . '/' . $numPreguntas?>
+					</p>
+					</div>
 				</div>
+			</a>
 		</div>
 		<?php
 		}
