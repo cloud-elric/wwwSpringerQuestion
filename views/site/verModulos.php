@@ -25,15 +25,15 @@ $this->registerCssFile ( '@web/webAssets/css/ver-modulos.css', [
 			?>
 			
 			<div class="col-md-4">
-			<a
+			<a class="<?=($numPreguntasContestadas==$numPreguntas)&&$numPreguntas>0?'complete':''?>"
 				href="<?=Yii::$app->urlManager->createAbsoluteUrl ( ['site/ver-preguntas', 'modulo'=>$modulo->id_modulo] )?>">
 				<div class="panel">
 					<div class="panel-body">
-						<h3><?=$modulo->txt_nombre?></h3>
+						<h3 class="text-center"><?=$modulo->txt_nombre?></h3>
 					</div>
 					<div class="panel-footer">
 						<p class="text-right">
-						<?=$numPreguntasContestadas . '/' . $numPreguntas?>
+						<?=($numPreguntasContestadas==$numPreguntas)&&$numPreguntas>0?'Complete':$numPreguntasContestadas . '/' . $numPreguntas?>
 					</p>
 					</div>
 				</div>

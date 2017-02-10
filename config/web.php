@@ -86,7 +86,8 @@ $config = [
 		'sign-up' => 'modUsuarios/manager/sign-up',
 		'login' => 'modUsuarios/manager/login',
 		'callback-facebook' => 'modUsuarios/manager/callback-facebook',
-		'reenviar-activacion'=>'modUsuarios/manager/reenviar-activacion'
+		'reenviar-activacion'=>'modUsuarios/manager/reenviar-activacion',
+		'success-registro'=>'modUsuarios/manager/success-registro'
 		//'/' => 'site/index' 
 	]
 ]

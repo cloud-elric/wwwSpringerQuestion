@@ -1,20 +1,12 @@
 <?php
-
-use yii\helpers\Html;
 use yii\widgets\Pjax;
+use yii\helpers\Html;
 
-
-/* @var $this yii\web\View */
-/* @var $model app\models\EntUsuarios */
-
-$this->title = 'Registro';
-// $this->params['breadcrumbs'][] = ['label' => 'Ent Usuarios', 'url' => ['index']];
-// $this->params['breadcrumbs'][] = $this->title;
-
+$this->title = "Success";
 $this->registerCssFile ( '@web/css/register-v3.css', [
-	'depends' => [
-		\app\assets\AppAsset::className ()
-	]
+		'depends' => [
+				\app\assets\AppAsset::className ()
+		]
 ] );
 
 $this->registerCssFile ( '@web/css/bootstrap-extend.min.css', [
@@ -22,7 +14,6 @@ $this->registerCssFile ( '@web/css/bootstrap-extend.min.css', [
 				\app\assets\AppAsset::className ()
 		]
 ] );
-
 Pjax::begin();
 ?>
 <div class="page vertical-align text-center">
@@ -33,14 +24,12 @@ Pjax::begin();
 			<div class="panel-body">
 		
 			    <h2><?= Html::encode($this->title) ?></h2>
-			
-			    <?= $this->render('_form', [
-			        'model' => $model,
-			    ]) ?>
-			    <div class="col-md-12 text-right">
+				<p>
+					Se ha enviado un correo eléctronico a la dirección proporcionada. En el encontrara su usuario, contraseña y un link para poder activar su cuenta. 
+				</p>
+				<div class="col-md-12 text-right">
 					<?=Html::a('Login', ['login'])?>
 				</div>
-			
 			</div>
 		
 		</div>
