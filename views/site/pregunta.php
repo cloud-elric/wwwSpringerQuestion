@@ -1,5 +1,6 @@
 <?php
 use yii\helpers\Html;
+use yii\web\View;
 
 // Registro de css y javascript
 $this->registerCssFile ( '@web/webAssets/css/resultados.css', [
@@ -8,10 +9,11 @@ $this->registerCssFile ( '@web/webAssets/css/resultados.css', [
 		]
 ] );
 
-echo Html::beginForm ( [ 
+echo Html::beginForm( [ 
 		'ver-preguntas',
-		'modulo' => $modulo->id_modulo 
-], 'post');
+		'modulo' => $modulo->id_modulo,
+		
+], 'post', ['id'=> 'form_preg']);
 ?>
 
 <div class="container">
@@ -34,7 +36,8 @@ echo Html::beginForm ( [
 									<div class="alert alert-info" role="alert">
 										<p>
 											<?= Html::radio ( 'respuesta', false, [ 
-			'value' => $respuesta->id_respuesta 
+			'value' => $respuesta->id_respuesta,
+			'class' => 'js_radio_preg'
 	] ) . $respuesta->txt_letra . ".-" . $respuesta->txt_respuesta ?>
 										</p>
 									</div>	
@@ -44,7 +47,7 @@ echo Html::beginForm ( [
 							?>
 						</div>
 						<div class="col-md-12 text-center">
-						<?=Html::submitButton('Siguiente', ['class'=>'btn btn-success'])?>
+						<?=Html::submitButton('<span class="ladda-label">Siguiente</span>', ['id' => 'btn_siguinte', 'class' => 'btn btn-success ladda-button', 'data-style' => 'zoom-in'])?>
 						</div>
 					</div>
 				</div>
@@ -56,4 +59,28 @@ echo Html::beginForm ( [
 <?php 
 
 echo Html::endForm ();
+
+$this->registerJs ( "
+	$('body').on(
+		'beforeSubmit',
+		'#form_preg',
+		function() {
+			var boton = Ladda.create(document.getElementById('btn_siguinte'));
+			boton.start();
+			alert();
+			if($('input.js_radio_preg').is(':checked')){
+				
+			}else{
+				e.preventDefault();
+				swal('Cuestionario', 'Necesitas contestar la pregunta!');
+				boton.stop();
+		return false;
+				
+			}
+			
+		});
+	
+      
+", View::POS_END );
 ?>
+

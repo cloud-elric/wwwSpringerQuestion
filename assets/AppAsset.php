@@ -21,11 +21,13 @@ class AppAsset extends AssetBundle
         'css/site.css',
     	'css/site.min.css',
         'webAssets/css/site.css',
-    	'webAssets/plugins/ladda-bootstrap/dist/ladda-themeless.min.css'	
+    	'webAssets/plugins/ladda-bootstrap/dist/ladda-themeless.min.css',
+    	'webAssets/css/sweetalert.css'
     ];
     public $js = [
-    		'webAssets/plugins/ladda-bootstrap/dist/spin.min.js',
-    		'webAssets/plugins/ladda-bootstrap/dist/ladda.min.js'
+    	'webAssets/plugins/ladda-bootstrap/dist/spin.min.js',
+    	'webAssets/plugins/ladda-bootstrap/dist/ladda.min.js',
+    	'webAssets/js/sweetalert.min.js'
     ];
     public $depends = [
         'yii\web\YiiAsset',
