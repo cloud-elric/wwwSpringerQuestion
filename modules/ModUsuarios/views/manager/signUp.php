@@ -37,6 +37,7 @@ Pjax::begin();
 			    <?= $this->render('_form', [
 			        'model' => $model,
 			    ]) ?>
+
 			    <div class="col-md-12 text-right">
 					<?=Html::a('Login', ['login'])?>
 				</div>

@@ -6,21 +6,40 @@ use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model app\models\EntUsuarios */
 /* @var $form yii\widgets\ActiveForm */
+
+$this->registerCssFile ( '@web/css/register-v3.css', [
+		'depends' => [
+				\app\assets\AppAsset::className ()
+		]
+] );
 ?>
 
-<div class="ent-usuarios-form">
+<div class="page vertical-align text-center">
+	<div class="page-content vertical-align-middle">
+	
+		<div class="panel">
+		
+			<div class="panel-body">
 
-    <?php $form = ActiveForm::begin(); ?>
-
-    
-    <?= $form->field($model, 'password')->passwordInput(['maxlength' => true]) ?>
-    
-    <?= $form->field($model, 'repeatPassword')->passwordInput(['maxlength' => true]) ?>
-
-    <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Cambiar password' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
-    </div>
-
-    <?php ActiveForm::end(); ?>
-
+				<div class="ent-usuarios-form">
+				
+				    <?php $form = ActiveForm::begin(); ?>
+				  
+				    <?= $form->field($model, 'password')->passwordInput(['maxlength' => true]) ?>
+				    
+				    <?= $form->field($model, 'repeatPassword')->passwordInput(['maxlength' => true]) ?>
+				
+				    <div class="form-group">
+				        <?= Html::submitButton($model->isNewRecord ? 'Cambiar password' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success btn-block btn-lg margin-top-40' : 'btn btn-primary btn-block btn-lg margin-top-40']) ?>
+				    </div>
+				
+				    <?php ActiveForm::end(); ?>
+				
+				</div>
+				
+			</div>
+		
+		</div>
+		
+	</div>
 </div>

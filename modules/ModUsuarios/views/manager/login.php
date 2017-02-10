@@ -10,39 +10,53 @@ use yii\bootstrap\ActiveForm;
 $this->title = 'Ingresar';
 $this->params['breadcrumbs'][] = $this->title;
 
+$this->registerCssFile ( '@web/css/register-v3.css', [
+	'depends' => [
+		\app\assets\AppAsset::className ()
+	]
+] );
 ?>
 
-<div class="site-login">
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="page vertical-align text-center">
+	<div class="page-content vertical-align-middle">
+	
+		<div class="panel">
+		
+			<div class="panel-body">
 
+				<div class="site-login">
+				    <h1><?= Html::encode($this->title) ?></h1>
+				
+				
+				    <?php $form = ActiveForm::begin(); ?>
+						
+						<div class="form-group form-material floating">
+				    	    <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
+						</div>
+				
+						<div class="form-group form-material floating">
+					        <?= $form->field($model, 'password')->passwordInput() ?>
+						</div>
+				
+				        <?php $form->field($model, 'rememberMe')->checkbox([
+				            'template' => "<div class=\"col-lg-offset-1 col-lg-3\">{input} {label}</div>\n<div class=\"col-lg-8\">{error}</div>",
+				        ]) ?>
+				
+				        <div class="form-group">
+				               <?= Html::submitButton('Ingresar', ['class' => 'btn btn-primary btn-block btn-lg margin-top-40', 'name' => 'login-button']) ?>
+				        </div>
+				
+				    <?php ActiveForm::end(); ?>
+				    
+				</div>
+				
+				<?=Html::a('Reenviar correo de activación', ['reenviar-activacion'])?>
+				<br>
+				<?=Html::a('Olvide mi contraseña', ['peticion-pass'])?>
 
-    <?php $form = ActiveForm::begin([
-        'id' => 'login-form',
-        'options' => ['class' => 'form-horizontal'],
-        'fieldConfig' => [
-            'template' => "{label}\n<div class=\"col-lg-3\">{input}</div>\n<div class=\"col-lg-8\">{error}</div>",
-            'labelOptions' => ['class' => 'col-lg-1 control-label'],
-        ],
-    ]); ?>
-
-        <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
-
-        <?= $form->field($model, 'password')->passwordInput() ?>
-
-        <?php $form->field($model, 'rememberMe')->checkbox([
-            'template' => "<div class=\"col-lg-offset-1 col-lg-3\">{input} {label}</div>\n<div class=\"col-lg-8\">{error}</div>",
-        ]) ?>
-
-        <div class="form-group">
-            <div class="col-lg-offset-1 col-lg-11">
-                <?= Html::submitButton('Ingresar', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
-            </div>
-        </div>
-
-    <?php ActiveForm::end(); ?>
-    
+			</div>
+		
+		</div>
+		
+	</div>
 </div>
-
-<?=Html::a('Reenviar correo de activación', ['reenviar-activacion'])?>
-<br>
-<?=Html::a('Olvide mi contraseña', ['peticion-pass'])?>
