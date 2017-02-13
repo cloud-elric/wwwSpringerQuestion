@@ -17,9 +17,7 @@ use app\models\CatCodigos;
  * Default controller for the `musuarios` module
  */
 class ManagerController extends Controller {
-	
 	public $layout = "@app/views/layouts/mainNoHeader";
-	
 	private function random_username($string) {
 		$pattern = " ";
 		$firstPart = strstr ( strtolower ( $string ), $pattern, true );
@@ -59,7 +57,7 @@ class ManagerController extends Controller {
 				] )->one ();
 				
 				$codigo->b_usado = 1;
-				$codigo->save();
+				$codigo->save ();
 				
 				if (Yii::$app->params ['modUsuarios'] ['mandarCorreoActivacion']) {
 					
@@ -77,9 +75,9 @@ class ManagerController extends Controller {
 					
 					// Envio de correo electronico
 					$utils->sendEmailActivacion ( $user->txt_email, $parametrosEmail );
-					return $this->redirect ([ 
+					return $this->redirect ( [ 
 							'success-registro' 
-					 ]);
+					] );
 				} else {
 					
 					if (Yii::$app->getUser ()->login ( $user )) {
@@ -94,9 +92,11 @@ class ManagerController extends Controller {
 				'model' => $model 
 		] );
 	}
-	
-	public function actionSuccessRegistro(){
-		return $this->render('successRegistro');
+	public function actionSuccessRegistro() {
+		return $this->render ( 'successRegistro' );
+	}
+	public function actionSuccessSendEmailRecoveryPassword() {
+		return $this->render ( 'successSendEmailRecoveryPassword' );
 	}
 	
 	/**
@@ -122,6 +122,10 @@ class ManagerController extends Controller {
 			
 			// Envio de correo electronico
 			$utils->sendEmailRecuperarPassword ( $user->txt_email, $parametrosEmail );
+			
+			return $this->redirect ( [ 
+					'success-send-email-recovery-password' 
+			] );
 		}
 		return $this->render ( 'peticionPass', [ 
 				'model' => $model 
@@ -151,6 +155,7 @@ class ManagerController extends Controller {
 		// Si los campos estan correctos por POST
 		if ($model->load ( Yii::$app->request->post () )) {
 			$user = $peticion->idUsuario;
+			$user->id_status = 2;
 			$user->setPassword ( $model->password );
 			$user->save ();
 			
