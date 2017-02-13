@@ -1,0 +1,37 @@
+.ver-modulos .panel-body{
+	min-height: 150px;
+	display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.complete .panel-body{
+	background-color:#43A047;
+}
+
+.ver-modulos .panel-footer {
+    padding: 10px 15px;
+    background-color: #f5f5f5;
+    border-top: 1px solid #ddd;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.complete .panel-footer p{
+	color:black;
+}
+
+a.complete:link {
+    color:white;
+}
+
+a.complete:visited {
+    color:white;
+}
+
+a.complete:hover {
+     color:white;
+}
+
+a.complete:active {
+      color:white;
+}

@@ -1,27 +1,52 @@
 <?php 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
+use yii\widgets\Pjax;
+
+
+$this->title = 'Password recovery';
+$this->registerCssFile ( '@web/css/register-v3.css', [
+	'depends' => [
+		\app\assets\AppAsset::className ()
+	]
+] );
+
+$this->registerCssFile ( '@web/css/bootstrap-extend.min.css', [
+		'depends' => [
+				\app\assets\AppAsset::className ()
+		]
+] );
+Pjax::begin();
 ?>
-<div class="site-login">
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="page vertical-align text-center">
+	<div class="page-content vertical-align-middle">
+	
+		<div class="panel">
+		
+			<div class="panel-body">
 
-
-    <?php $form = ActiveForm::begin([
-        'id' => 'login-form',
-        'options' => ['class' => 'form-horizontal'],
-        'fieldConfig' => [
-            'template' => "{label}\n<div class=\"col-lg-3\">{input}</div>\n<div class=\"col-lg-8\">{error}</div>",
-            'labelOptions' => ['class' => 'col-lg-1 control-label'],
-        ],
-    ]); ?>
-
-        <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
-
-        <div class="form-group">
-            <div class="col-lg-offset-1 col-lg-11">
-                <?= Html::submitButton('Recuperar password', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
-            </div>
-        </div>
-
-    <?php ActiveForm::end(); ?>
+				<div class="site-login">
+				    <h1><?= Html::encode($this->title) ?></h1>
+				
+				    <?php $form = ActiveForm::begin(); ?>
+				
+				        <?= $form->field($model, 'username')->textInput(['placeholder' => 'Email'])->label(false) ?>
+				
+				        <div class="form-group">
+			                <?= Html::submitButton('Recuperar password', ['class' => 'btn btn-primary btn-block btn-lg margin-top-40', 'name' => 'login-button']) ?>
+				        </div>
+				
+				    <?php ActiveForm::end(); ?>
+				    <div class="col-md-12 text-right">
+				<?=Html::a('Login', ['login'])?>
+				</div>
+				</div>
+				
+			</div>
+		
+		</div>
+		
+	</div>
 </div>
+<?php 
+Pjax::end();

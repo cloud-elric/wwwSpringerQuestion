@@ -6,43 +6,90 @@
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
+use yii\widgets\Pjax;
+use yii\web\View;
 
-$this->title = 'Ingresar';
+$this->title = 'Login';
 $this->params['breadcrumbs'][] = $this->title;
 
+$this->registerCssFile ( '@web/css/register-v3.css', [
+	'depends' => [
+		\app\assets\AppAsset::className ()
+	]
+] );
+
+$this->registerCssFile ( '@web/css/bootstrap-extend.min.css', [
+		'depends' => [
+				\app\assets\AppAsset::className ()
+		]
+] );
+Pjax::begin();
 ?>
 
-<div class="site-login">
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="page vertical-align text-center">
+	<div class="page-content vertical-align-middle">
+	
+		<div class="panel">
+		
+			<div class="panel-body">
 
-
-    <?php $form = ActiveForm::begin([
-        'id' => 'login-form',
-        'options' => ['class' => 'form-horizontal'],
-        'fieldConfig' => [
-            'template' => "{label}\n<div class=\"col-lg-3\">{input}</div>\n<div class=\"col-lg-8\">{error}</div>",
-            'labelOptions' => ['class' => 'col-lg-1 control-label'],
-        ],
-    ]); ?>
-
-        <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
-
-        <?= $form->field($model, 'password')->passwordInput() ?>
-
-        <?php $form->field($model, 'rememberMe')->checkbox([
-            'template' => "<div class=\"col-lg-offset-1 col-lg-3\">{input} {label}</div>\n<div class=\"col-lg-8\">{error}</div>",
-        ]) ?>
-
-        <div class="form-group">
-            <div class="col-lg-offset-1 col-lg-11">
-                <?= Html::submitButton('Ingresar', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
-            </div>
-        </div>
-
-    <?php ActiveForm::end(); ?>
-    
+				<div class="site-login">
+				    <h1><?= Html::encode($this->title) ?></h1>
+				
+				
+				    <?php $form = ActiveForm::begin(); ?>
+						
+						<div class="form-group">
+				    	    <?= $form->field($model, 'username')->textInput(['placeholder'=>'Email'])->label(false) ?>
+						</div>
+				
+						<div class="form-group">
+					        <?= $form->field($model, 'password')->passwordInput(['placeholder'=>'Contraseña'])->label(false) ?>
+						</div>
+				
+				        <?php $form->field($model, 'rememberMe')->checkbox([
+				            'template' => "<div class=\"col-lg-offset-1 col-lg-3\">{input} {label}</div>\n<div class=\"col-lg-8\">{error}</div>",
+				        ]) ?>
+				
+				        <div class="form-group">
+				               <?= Html::submitButton('<span class="ladda-label">Ingresar</span>', ['id'=>'submit-button','data-style'=>'zoom-in', 'class' =>'btn btn-primary btn-block btn-lg margin-top-40 ladda-button']) ?>
+				        </div>
+				
+				    <?php ActiveForm::end(); ?>
+				    
+				</div>
+				<div class="col-md-12 text-right">
+				<?=Html::a('Olvide mi contraseña', ['peticion-pass'])?>
+				</div>
+				<div class="col-md-12 text-right">
+				<?=Html::a('Registrarse', ['sign-up'])?>
+				</div>
+			</div>
+		
+		</div>
+		
+	</div>
 </div>
 
-<?=Html::a('Reenviar correo de activación', ['reenviar-activacion'])?>
-<br>
-<?=Html::a('Olvide mi contraseña', ['peticion-pass'])?>
+<?php 
+$this->registerJs ( "
+$('body').on(
+		'beforeSubmit',
+		'form',
+		function() {
+			var form = $(this);
+			// return false if form still have some validation errors
+			if (form.find('.has-error').length) {
+				return false;
+			}
+			//$('#js-editar-submit').attr('value', 'editar');
+			var button = document.getElementById('submit-button');
+			var l = Ladda.create(button);
+		 	l.start();
+		
+		});
+		
+	
+", View::POS_END );
+
+Pjax::end();

@@ -6,7 +6,7 @@ $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
-		'defaultRoute'=>'modUsuarios/manager/sign-up',
+		'defaultRoute'=>'site/ver-modulos',
 		'modules' => [
 				'modUsuarios' => [
 						'class' => 'app\modules\ModUsuarios\ModUsuarios'
@@ -16,17 +16,17 @@ $config = [
     		'session' => [
     				'timeout'=>3600 // Segundos que durara la sesion
     		],
-    		'assetManager' => [
-    				'bundles' => [
-    						'yii\bootstrap\BootstrapPluginAsset' => [
-    								'js'=>[]
-    						],
-    						'yii\bootstrap\BootstrapAsset' => [
-    								'css' => [],
-    						],
+//     		'assetManager' => [
+//     				'bundles' => [
+//     						'yii\bootstrap\BootstrapPluginAsset' => [
+//     								'js'=>[]
+//     						],
+//     						'yii\bootstrap\BootstrapAsset' => [
+//     								'css' => [],
+//     						],
     		
-    				],
-    		],
+//     				],
+//     		],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'KBI6OjMCowgwXJCMlZGkMY7SyGdyGb7sAB',
@@ -86,7 +86,8 @@ $config = [
 		'sign-up' => 'modUsuarios/manager/sign-up',
 		'login' => 'modUsuarios/manager/login',
 		'callback-facebook' => 'modUsuarios/manager/callback-facebook',
-		'reenviar-activacion'=>'modUsuarios/manager/reenviar-activacion'
+		'reenviar-activacion'=>'modUsuarios/manager/reenviar-activacion',
+		'success-registro'=>'modUsuarios/manager/success-registro'
 		//'/' => 'site/index' 
 	]
 ]
