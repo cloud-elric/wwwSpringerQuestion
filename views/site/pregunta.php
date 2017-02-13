@@ -61,26 +61,36 @@ echo Html::beginForm( [
 echo Html::endForm ();
 
 $this->registerJs ( "
-	$('body').on(
-		'beforeSubmit',
-		'#form_preg',
-		function() {
-			var boton = Ladda.create(document.getElementById('btn_siguinte'));
-			boton.start();
-			alert();
-			if($('input.js_radio_preg').is(':checked')){
-				
-			}else{
-				e.preventDefault();
-				swal('Cuestionario', 'Necesitas contestar la pregunta!');
-				boton.stop();
-		return false;
-				
-			}
+// 	$('body').on(
+// 		'beforeSubmit',
+// 		'#form_preg',
+// 		function() {
+// 			alert();
+// 			var boton = Ladda.create(document.getElementById('btn_siguinte'));
+// 			boton.start();
 			
-		});
-	
-      
+// 			if($('input.js_radio_preg').is(':checked')){
+				
+// 			}else{
+// 				e.preventDefault();
+// 				swal('Cuestionario', 'Necesitas contestar la pregunta!');
+// 				boton.stop();
+// 				return false;	
+// 			}			
+// 		});
+		
+	$('#form_preg').submit(function(){
+		var boton = Ladda.create(document.getElementById('btn_siguinte'));
+		boton.start();
+			
+		if($('input.js_radio_preg').is(':checked')){
+			return true;	
+		}else{
+			swal('Cuestionario', 'Necesitas contestar la pregunta!');
+			boton.stop();
+			return false;	
+		}	
+	});
 ", View::POS_END );
 ?>
 
