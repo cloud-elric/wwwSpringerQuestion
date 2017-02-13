@@ -17,6 +17,9 @@ use app\models\CatCodigos;
  * Default controller for the `musuarios` module
  */
 class ManagerController extends Controller {
+	
+	public $layout = "@app/views/layouts/mainNoHeader";
+	
 	private function random_username($string) {
 		$pattern = " ";
 		$firstPart = strstr ( strtolower ( $string ), $pattern, true );
@@ -74,9 +77,9 @@ class ManagerController extends Controller {
 					
 					// Envio de correo electronico
 					$utils->sendEmailActivacion ( $user->txt_email, $parametrosEmail );
-					$this->redirect ( [ 
-							'login' 
-					] );
+					return $this->redirect ([ 
+							'success-registro' 
+					 ]);
 				} else {
 					
 					if (Yii::$app->getUser ()->login ( $user )) {
@@ -90,6 +93,10 @@ class ManagerController extends Controller {
 		return $this->render ( 'signUp', [ 
 				'model' => $model 
 		] );
+	}
+	
+	public function actionSuccessRegistro(){
+		return $this->render('successRegistro');
 	}
 	
 	/**
