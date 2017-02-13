@@ -12,6 +12,12 @@ $this->registerCssFile ( '@web/css/register-v3.css', [
 				\app\assets\AppAsset::className ()
 		]
 ] );
+
+$this->registerCssFile ( '@web/css/bootstrap-extend.min.css', [
+		'depends' => [
+				\app\assets\AppAsset::className ()
+		]
+] );
 ?>
 
 <div class="page vertical-align text-center">
@@ -25,9 +31,9 @@ $this->registerCssFile ( '@web/css/register-v3.css', [
 				
 				    <?php $form = ActiveForm::begin(); ?>
 				  
-				    <?= $form->field($model, 'password')->passwordInput(['maxlength' => true]) ?>
+				    <?= $form->field($model, 'password')->passwordInput(['maxlength' => true, 'placeholder'=>'Contraseña'])->label(false) ?>
 				    
-				    <?= $form->field($model, 'repeatPassword')->passwordInput(['maxlength' => true]) ?>
+				    <?= $form->field($model, 'repeatPassword')->passwordInput(['maxlength' => true, 'placeholder'=>'Repetir contraseña'])->label(false) ?>
 				
 				    <div class="form-group">
 				        <?= Html::submitButton($model->isNewRecord ? 'Cambiar password' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success btn-block btn-lg margin-top-40' : 'btn btn-primary btn-block btn-lg margin-top-40']) ?>
