@@ -78,6 +78,12 @@ $this->registerJs ( "
 // 				return false;	
 // 			}			
 // 		});
+
+		$(window).bind('pageshow', function(event) {
+    if (event.originalEvent.persisted) {
+        window.location.reload() 
+    }
+});
 		
 	$('#form_preg').submit(function(){
 		var boton = Ladda.create(document.getElementById('btn_siguinte'));

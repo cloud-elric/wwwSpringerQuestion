@@ -26,7 +26,7 @@ AppAsset::register($this);
 <?php $this->beginBody() ?>
  <?php
     NavBar::begin([
-        'brandLabel' => 'Springer',
+        'brandLabel' => '',
         'brandUrl' => ['site/ver-modulos'],
         'options' => [
             'class' => 'navbar-inverse',
