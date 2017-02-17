@@ -12,6 +12,7 @@ use yii\db\Expression;
 use app\models\CatCodigos;
 use app\models\RelUsuarioModulos;
 use app\models\ViewModulosPuntuaje;
+use app\models\ViewScoreTotalUsuario;
 
 class SiteController extends Controller {
 	/**
@@ -86,16 +87,28 @@ class SiteController extends Controller {
 		] );
 	}
 	
+	public function actionCertificate(){
+		$usuario = Yii::$app->user->identity;
+		
+		return $this->render('certificate');
+	}
+	
 	/**
 	 * Action para mostrar todos los modulos
 	 */
 	public function actionVerModulos() {
+		
+		$usuario = Yii::$app->user->identity;
+		
 		$modulos = CatModulos::find ()->where ( [ 
 				'b_habilitado' => 1 
 		] )->orderBy ( 'txt_nombre' )->all ();
 		
+		$avanceUsuario = ViewScoreTotalUsuario::find()->where(['id_usuario'=>$usuario->id_usuario])->one();
+		
 		return $this->render ( 'verModulos', [ 
-				'modulos' => $modulos 
+				'modulos' => $modulos,
+				'avanceUsuario'=>$avanceUsuario
 		] );
 	}
 	
