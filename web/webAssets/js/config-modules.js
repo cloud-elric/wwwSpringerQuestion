@@ -1,0 +1,33 @@
+$(document).ready(function(){
+	var minScore = 15;
+	
+	$("#js-instrucciones").html('<strong>Select modules. The total of the minimum score must be greater than or equal to '+ minScore +' </strong>');
+	
+	$("#btn-siguinte").on('click', function(e){
+		e.preventDefault();
+		
+		//var l = Ladda.create(this);
+	 	//l.start();
+	 	
+	 	var scoreSelected = 0;
+		$('input:checked').each(function(index){
+			scoreSelected+= $(this).data('score');
+		});
+		
+		alert(scoreSelected);
+	 	
+//	 	if($('input:checked').length > 0 ){
+//	 		$('form').submit();
+//	 	}else{
+//	 		swal('Wait', 'You need to select at least one option.', 'warning');
+//	 	}
+	 	if(scoreSelected>=minScore){
+	 		//$('form').submit();
+	 	}else{
+	 		swal('Wait', 'The total of the minimum score must be greater than or equal to '+minScore, 'warning');
+	 	}
+	 	
+	 	//l.stop();
+	 	
+	});
+});

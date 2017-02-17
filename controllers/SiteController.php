@@ -10,6 +10,8 @@ use app\models\EntRespuestasUsuarios;
 use app\models\EntPreguntas;
 use yii\db\Expression;
 use app\models\CatCodigos;
+use app\models\RelUsuarioModulos;
+use app\models\ViewModulosPuntuaje;
 
 class SiteController extends Controller {
 	/**
@@ -21,13 +23,19 @@ class SiteController extends Controller {
 						'class' => AccessControl::className (),
 						'only' => [ 
 								'logout',
-								'ver-modulos' 
+								'ver-modulos',
+								'ver-resultados',
+								'ver-preguntas',
+								'seleccionar-modulos'
 						],
 						'rules' => [ 
 								[ 
 										'actions' => [ 
 												'logout',
-												'ver-modulos' 
+												'ver-modulos',
+												'ver-preguntas',
+												'ver-resultados',
+												'seleccionar-modulos'
 										],
 										'allow' => true,
 										'roles' => [ 
@@ -54,6 +62,28 @@ class SiteController extends Controller {
 		Yii::$app->user->logout ();
 		
 		return $this->goHome ();
+	}
+	
+	/**
+	 * Selecciona los modulos del usuario
+	 */
+	public function actionSeleccionarModulos(){
+		
+		$usuario = Yii::$app->user->identity;
+		
+		$numModulosUsuario = RelUsuarioModulos::find()->where(['id_usuario'=>$usuario->id_usuario])->all();
+		
+		if($numModulosUsuario){
+			return $this->redirect(['site/ver-modulos']);
+		}
+		
+		$modulos = ViewModulosPuntuaje::find ()->where ( [
+				'b_habilitado' => 1
+		] )->orderBy ( 'txt_nombre' )->all ();
+		
+		return $this->render ( 'seleccionarModulos', [
+				'modulos' => $modulos
+		] );
 	}
 	
 	/**
