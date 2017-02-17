@@ -6,15 +6,14 @@ $(document).ready(function(){
 	$("#btn-siguinte").on('click', function(e){
 		e.preventDefault();
 		
-		//var l = Ladda.create(this);
-	 	//l.start();
+		var l = Ladda.create(this);
+	 	l.start();
 	 	
 	 	var scoreSelected = 0;
 		$('input:checked').each(function(index){
 			scoreSelected+= $(this).data('score');
 		});
 		
-		alert(scoreSelected);
 	 	
 //	 	if($('input:checked').length > 0 ){
 //	 		$('form').submit();
@@ -22,12 +21,31 @@ $(document).ready(function(){
 //	 		swal('Wait', 'You need to select at least one option.', 'warning');
 //	 	}
 	 	if(scoreSelected>=minScore){
-	 		//$('form').submit();
+	 		$('form').submit();
 	 	}else{
 	 		swal('Wait', 'The total of the minimum score must be greater than or equal to '+minScore, 'warning');
 	 	}
 	 	
-	 	//l.stop();
+	 	l.stop();
 	 	
 	});
+});
+
+var numScore = 0;
+$('.js_checkbox_modulos').on('click', function(){
+	if($(this).is(':checked')){
+		numScore += $(this).data('score');
+		toastr["info"]("Min score: 15", "Tienes: "+numScore);
+	}else{
+		numScore -= $(this).data('score');
+		toastr["info"]("Min score: 15", "Tienes: "+numScore);
+	}
+	console.log(numScore);
+	
+	if(numScore >= 15){
+		$(':input[type="submit"]').prop('disabled', false);
+		toastr["success"]("Puedes seguir", "Score minino completado");
+	}else{
+		$(':input[type="submit"]').prop('disabled', true);
+	}
 });

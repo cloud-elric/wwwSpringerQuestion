@@ -70,14 +70,21 @@ class SiteController extends Controller {
 	 */
 	public function actionSeleccionarModulos(){
 		
-		$usuario = Yii::$app->user->identity;
-		
-		$numModulosUsuario = RelUsuarioModulos::find()->where(['id_usuario'=>$usuario->id_usuario])->all();
-		
-		if($numModulosUsuario){
+ 		$usuario = Yii::$app->user->identity;
+
+		if(isset($_POST['modulo'])){
+// 			print_r($_POST);
+// 			exit();
+			foreach($_POST['modulo'] as $idModulo){		
+				$mods = new RelUsuarioModulos();
+				$mods->id_usuario = $usuario->id_usuario;
+				$mods->id_modulo = $idModulo;
+				
+				$mods->save();
+			}
 			return $this->redirect(['site/ver-modulos']);
 		}
-		
+
 		$modulos = ViewModulosPuntuaje::find ()->where ( [
 				'b_habilitado' => 1
 		] )->orderBy ( 'txt_nombre' )->all ();
@@ -97,12 +104,17 @@ class SiteController extends Controller {
 	 * Action para mostrar todos los modulos
 	 */
 	public function actionVerModulos() {
+
+
+		$idUsuario = Yii::$app->user->identity->id_usuario;
+		$relUsMod = RelUsuarioModulos::find()->where(['id_usuario'=>$idUsuario])->all();
+		$modulos = array();
 		
-		$usuario = Yii::$app->user->identity;
-		
-		$modulos = CatModulos::find ()->where ( [ 
-				'b_habilitado' => 1 
-		] )->orderBy ( 'txt_nombre' )->all ();
+		foreach($relUsMod as $rel){
+			$mod = CatModulos::find()->where(['id_modulo'=>$rel->id_modulo])->andWhere(['b_habilitado'=>1])->one();
+			array_push($modulos, $mod);
+		}
+
 		
 		$avanceUsuario = ViewScoreTotalUsuario::find()->where(['id_usuario'=>$usuario->id_usuario])->one();
 		
