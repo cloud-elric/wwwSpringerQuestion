@@ -41,6 +41,7 @@ class EntUsuarios extends \yii\db\ActiveRecord implements IdentityInterface
 	public $password;
 	public $repeatPassword;
 	public $codigo;
+	public $aceptarTerminos;
 	
 	/**
 	 * @inheritdoc
@@ -82,10 +83,12 @@ class EntUsuarios extends \yii\db\ActiveRecord implements IdentityInterface
 								'txt_username',
 								'txt_apellido_paterno',
 								'txt_email',
-								'codigo'
+								'codigo',
+								'aceptarTerminos'
 						],
 						'required',
 						'on' => 'registerInput',
+						
 						'message'=>'Campo requerido'
 				],
 // 				[ 
@@ -212,7 +215,8 @@ class EntUsuarios extends \yii\db\ActiveRecord implements IdentityInterface
 				'txt_email' => 'Dirección de correo electronico',
 				'fch_creacion' => 'Fch Creacion',
 				'fch_actualizacion' => 'Fch Actualizacion',
-				'id_status' => 'Id Status' 
+				'id_status' => 'Id Status',
+				'aceptarTerminos'=>'He leído aviso de privacidad'
 		];
 	}
 	

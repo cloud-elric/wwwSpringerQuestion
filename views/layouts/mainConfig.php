@@ -26,9 +26,8 @@ AppAsset::register($this);
 <?php $this->beginBody() ?>
  <?php
     NavBar::begin([
-        'brandLabel' => '',
-    		'brandOptions' => ['class' => 'myclass'],
-        'brandUrl' => ['site/ver-modulos'],
+        'brandLabel' => 'Select the modules you wish take',
+        'brandUrl' => [''],
         'options' => [
             'class' => 'navbar-inverse',
         ],
@@ -42,17 +41,11 @@ AppAsset::register($this);
                 '<li>'
                 . Html::beginForm(['/site/logout'], 'post', ['class' => 'navbar-form'])
                 . Html::submitButton(
-                    'Logout',
+                    'Logout (' . Yii::$app->user->identity->txt_username . ')',
                     ['class' => 'btn btn-link']
                 )
                 . Html::endForm()
-                . '</li>'.
-            		'<li>'
-            				. Html::a(
-            						'Logout',
-            						['seleccionar-mas-modulos']
-            						)
-            						. '</li>'
+                . '</li>'
             )
         ],
     ]);

@@ -10,6 +10,9 @@ use app\models\EntRespuestasUsuarios;
 use app\models\EntPreguntas;
 use yii\db\Expression;
 use app\models\CatCodigos;
+use app\models\RelUsuarioModulos;
+use app\models\ViewModulosPuntuaje;
+use app\models\ViewScoreTotalUsuario;
 
 class SiteController extends Controller {
 	/**
@@ -21,13 +24,19 @@ class SiteController extends Controller {
 						'class' => AccessControl::className (),
 						'only' => [ 
 								'logout',
-								'ver-modulos' 
+								'ver-modulos',
+								'ver-resultados',
+								'ver-preguntas',
+								'seleccionar-modulos'
 						],
 						'rules' => [ 
 								[ 
 										'actions' => [ 
 												'logout',
-												'ver-modulos' 
+												'ver-modulos',
+												'ver-preguntas',
+												'ver-resultados',
+												'seleccionar-modulos'
 										],
 										'allow' => true,
 										'roles' => [ 
@@ -57,15 +66,71 @@ class SiteController extends Controller {
 	}
 	
 	/**
+	 * Selecciona los modulos del usuario
+	 */
+	public function actionSeleccionarModulos(){
+		$this->layout = 'mainConfig';
+	$usuario = Yii::$app->user->identity;
+		$relUsMod = RelUsuarioModulos::find()->where(['id_usuario'=>$usuario->id_usuario])->all();
+		$modulos = array();
+		
+		if($relUsMod){
+			return $this->redirect(['site/ver-modulos']);
+		}
+
+		if(isset($_POST['modulo'])){
+// 			print_r($_POST);
+// 			exit();
+			foreach($_POST['modulo'] as $idModulo){		
+				$mods = new RelUsuarioModulos();
+				$mods->id_usuario = $usuario->id_usuario;
+				$mods->id_modulo = $idModulo;
+				
+				$mods->save();
+			}
+			return $this->redirect(['site/ver-modulos']);
+		}
+
+		$modulos = ViewModulosPuntuaje::find ()->where ( [
+				'b_habilitado' => 1
+		] )->orderBy ( 'txt_nombre' )->all ();
+		
+		return $this->render ( 'seleccionarModulos', [
+				'modulos' => $modulos
+		] );
+	}
+	
+	public function actionCertificate(){
+		$usuario = Yii::$app->user->identity;
+		
+		return $this->render('certificate');
+	}
+	
+	/**
 	 * Action para mostrar todos los modulos
 	 */
 	public function actionVerModulos() {
-		$modulos = CatModulos::find ()->where ( [ 
-				'b_habilitado' => 1 
-		] )->orderBy ( 'txt_nombre' )->all ();
+
+
+		$usuario = Yii::$app->user->identity;
+		$relUsMod = RelUsuarioModulos::find()->where(['id_usuario'=>$usuario->id_usuario])->all();
+		$modulos = array();
+		
+		if(!$relUsMod){
+			return $this->redirect(['site/seleccionar-modulos']);
+		}
+		
+		foreach($relUsMod as $rel){
+			$mod = CatModulos::find()->where(['id_modulo'=>$rel->id_modulo])->andWhere(['b_habilitado'=>1])->one();
+			array_push($modulos, $mod);
+		}
+
+		
+		$avanceUsuario = ViewScoreTotalUsuario::find()->where(['id_usuario'=>$usuario->id_usuario])->one();
 		
 		return $this->render ( 'verModulos', [ 
-				'modulos' => $modulos 
+				'modulos' => $modulos,
+				'avanceUsuario'=>$avanceUsuario
 		] );
 	}
 	
@@ -193,6 +258,36 @@ class SiteController extends Controller {
 			throw new NotFoundHttpException ( 'The requested page does not exist.' );
 		}
 	}
+	
+	public function actionSeleccionarMasModulos(){
+	
+		$usuario = Yii::$app->user->identity;
+	
+		if(isset($_POST['modulo'])){
+			// 			print_r($_POST);
+			// 			exit();
+			foreach($_POST['modulo'] as $idModulo){
+				$mods = new RelUsuarioModulos();
+				$mods->id_usuario = $usuario->id_usuario;
+				$mods->id_modulo = $idModulo;
+	
+				$mods->save();
+			}
+			return $this->redirect(['site/ver-modulos']);
+		}
+		$modulosFaltantes = array();
+		$modUsuario = RelUsuarioModulos::find()->where(['id_usuario'=>$usuario->id_usuario])->all();
+		foreach($modUsuario as $modUs){
+			array_push($modulosFaltantes,$modUs->id_modulo); 
+		}
+		
+		$modulos = ViewModulosPuntuaje::find()->where(['not in', 'id_modulo', $modulosFaltantes])->andWhere(['b_habilitado'=>1])->all();
+	
+		return $this->render ( 'seleccionarMasModulos', [
+				'modulos' => $modulos
+		] );
+	}
+	
 // 	public function actionGenerarCodigos() {
 // // 		for($i = 0; $i < 800; $i ++) {
 // 			$codigo = new CatCodigos ();
