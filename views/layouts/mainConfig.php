@@ -26,8 +26,8 @@ AppAsset::register($this);
 <?php $this->beginBody() ?>
  <?php
     NavBar::begin([
-        'brandLabel' => '<div class="col-md-6">:D</div>',
-        'brandUrl' => ['site/ver-modulos'],
+        'brandLabel' => 'Select the modules you wish take',
+        'brandUrl' => [''],
         'options' => [
             'class' => 'navbar-inverse',
         ],

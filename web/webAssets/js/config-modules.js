@@ -1,7 +1,7 @@
 $(document).ready(function(){
 	var minScore = 15;
 	
-	$("#js-instrucciones").html('<strong>Select modules. The total of the minimum score must be greater than or equal to '+ minScore +' </strong>');
+	$("#js-instrucciones").html('<strong>- The minimum amount of credits required for the certificate should be greater than or equal to '+ minScore +' credits</strong>');
 	
 	$("#btn-siguinte").on('click', function(e){
 		e.preventDefault();
@@ -35,10 +35,10 @@ var numScore = 0;
 $('.js_checkbox_modulos').on('click', function(){
 	if($(this).is(':checked')){
 		numScore += $(this).data('score');
-		toastr["info"]("Min score: 15", "Tienes: "+numScore);
+		toastr["info"]("Min score: 15", "Selected: "+numScore);
 	}else{
 		numScore -= $(this).data('score');
-		toastr["info"]("Min score: 15", "Tienes: "+numScore);
+		toastr["info"]("Min score: 15", "Selected: "+numScore);
 	}
 	console.log(numScore);
 	

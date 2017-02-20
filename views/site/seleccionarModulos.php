@@ -33,10 +33,13 @@ $this->registerJsFile ( '@web/webAssets/js/toastr.js', [
 <div class="container ver-modulos">
 	<div class="row">
 
-		<div class="col-md-12">
+		<div class="col-md-9">
 			<div class="alert alert-info" role="alert" id="js-instrucciones">
 				
 			</div>
+		</div>
+		<div class="col-md-3">
+		<?=Html::submitButton('<span class="ladda-label">Save configuration</span>', ['id' => 'btn-siguinte', 'class' => 'btn btn-success btn-block ladda-button', 'style'=>'padding:15px', 'data-style' => 'zoom-in', 'disabled'=>true])?>
 		</div>
 	
 		<?php
@@ -69,11 +72,11 @@ $this->registerJsFile ( '@web/webAssets/js/toastr.js', [
 		}
 		?>
 	</div>
-	<div class="row">
-		<div class="col-md-6 col-md-offset-3 text-center form-group">
-			<?=Html::submitButton('<span class="ladda-label">Next</span>', ['id' => 'btn-siguinte', 'class' => 'btn btn-success btn-block ladda-button', 'data-style' => 'zoom-in', 'disabled'=>true])?>  
-		</div>
-	</div>
+<!-- 	<div class="row"> -->
+<!-- 		<div class="col-md-6 col-md-offset-3 text-center form-group"> -->
+			  
+<!-- 		</div> -->
+<!-- 	</div> -->
 </div>
 <?php echo Html::endForm ();?>
 

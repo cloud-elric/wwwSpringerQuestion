@@ -69,7 +69,7 @@ class SiteController extends Controller {
 	 * Selecciona los modulos del usuario
 	 */
 	public function actionSeleccionarModulos(){
-		
+		$this->layout = 'mainConfig';
  		$usuario = Yii::$app->user->identity;
 
 		if(isset($_POST['modulo'])){
@@ -106,8 +106,8 @@ class SiteController extends Controller {
 	public function actionVerModulos() {
 
 
-		$idUsuario = Yii::$app->user->identity->id_usuario;
-		$relUsMod = RelUsuarioModulos::find()->where(['id_usuario'=>$idUsuario])->all();
+		$usuario = Yii::$app->user->identity;
+		$relUsMod = RelUsuarioModulos::find()->where(['id_usuario'=>$usuario->id_usuario])->all();
 		$modulos = array();
 		
 		foreach($relUsMod as $rel){
