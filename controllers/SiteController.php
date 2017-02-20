@@ -70,7 +70,13 @@ class SiteController extends Controller {
 	 */
 	public function actionSeleccionarModulos(){
 		$this->layout = 'mainConfig';
- 		$usuario = Yii::$app->user->identity;
+	$usuario = Yii::$app->user->identity;
+		$relUsMod = RelUsuarioModulos::find()->where(['id_usuario'=>$usuario->id_usuario])->all();
+		$modulos = array();
+		
+		if($relUsMod){
+			return $this->redirect(['site/ver-modulos']);
+		}
 
 		if(isset($_POST['modulo'])){
 // 			print_r($_POST);
@@ -120,7 +126,7 @@ class SiteController extends Controller {
 		}
 
 		
-		$avanceUsuario = ViewScoreTotalUsuario::find()->where(['id_usuario'=>$idUsuario])->one();
+		$avanceUsuario = ViewScoreTotalUsuario::find()->where(['id_usuario'=>$usuario->id_usuario])->one();
 		
 		return $this->render ( 'verModulos', [ 
 				'modulos' => $modulos,

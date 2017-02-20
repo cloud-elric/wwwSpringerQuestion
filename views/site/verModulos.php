@@ -10,17 +10,25 @@ $this->registerCssFile ( '@web/webAssets/css/ver-modulos.css', [
 $puntuacionMinima = 15;
 $porcentaje = 0;
 ?>
-
+<style>
+.progress {
+    height: 35px;
+    margin-bottom: 0px; 
+    overflow: hidden;
+    background-color: #f5f5f5;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, .1);
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, .1);
+}
+</style>
 <div class="container">
 	<div class="row">
-		<div class="col-md-6 col-md-offset-3">
+		<div class="col-md-12">
 		<div class="form-group">
-		<?php 
-		if(false){
-		#if($avanceUsuario && $avanceUsuario->num_puntuacion_usuario<$puntuacionMinima){?>
+		
 		<div class="panel">
 		<div class="panel-body">
-					<p>Score for get certificate</p>
+		<div class="row">
 					<?php
 					$scoreUsuario = 0;
 					if($avanceUsuario){
@@ -28,6 +36,8 @@ $porcentaje = 0;
 						$porcentaje = ($scoreUsuario*100)/15;
 					}
 					?>
+					<div class="col-md-8">
+					<p>Score for get certificate</p>
 					<div class="progress">
 						<div class="progress-bar progress-bar-striped active"
 							role="progressbar" aria-valuenow="<?=$scoreUsuario?>" aria-valuemin="0"
@@ -36,20 +46,32 @@ $porcentaje = 0;
 						</div>
 					</div>
 					</div>
+					<div class="col-md-4">
+					<p><br></p>
+						<?php
+						$habilitarBoton = $porcentaje==100;
+						if($habilitarBoton){
+							echo Html::a('Get certificate', ['site/certificate'], ['class'=>'btn btn-primary btn-block']);
+						}else{?>
+						<a class="btn btn-primary btn-block " href="javascript: void(0)" disabled="">Get certificate</a>
+						<?php }
+						?>
+					</div>
+		</div>			
+					</div>
 		</div>
-		<?php }else{
-		echo Html::a('Get certificate', ['site/certificate'], ['class'=>'btn btn-primary btn-block']);
-		}?>
+		
 		</div>
 		</div>
 	</div>
 	
-	<div class="row col-md-12">
+	<div class="row">
+	<div class=" col-md-12">
 		<div class="panel">
 			<div class="panel-body">
 				<p>INSTRUCCIONES:</p>
 				<p>Leer detenidamente cada una de los capitulos contenidos en la seccion impresa.</p>
-				<p>Una vez finalizada la lectutura podrá acceder al módulo de evaluación, el cual está localizado en la página <a href="http://www.certificaonco.com.mx">www.certificaonco.com.mx</a></p>
+				<p>Una vez finalizada la lectutura podrá acceder al módulo de evaluación, el cual está localizado en la página <a target="_blank" href="http://www.certificaonco.com.mx">www.certificaonco.com.mx</a></p>
 				<p>Si es la primera vez que ingresa, tendrá que seguir el proceso de registro, durante el cual le solicitará sus datos personales, aceptar el aviso de privacidad, asi como
 				colocar la clave de acceso contenida en este material.</p>
 				<p>Puede ir realizando las evaluaciones de manera parcial o bien aplicar a los mismos en una sola sesión.</p>
@@ -57,6 +79,7 @@ $porcentaje = 0;
 				<p>Para solicitar el diploma con la acreditación de los puntos de recertificación pulse Diploma.</p>
 				<p>Dudas y aclaraciones, mande un e-mail a la siguiente direccion: </p>
 			</div>
+		</div>
 		</div>
 	</div>
 	

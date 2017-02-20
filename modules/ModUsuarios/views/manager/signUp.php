@@ -23,6 +23,12 @@ $this->registerCssFile ( '@web/css/bootstrap-extend.min.css', [
 		]
 ] );
 
+$this->registerJsFile ( 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js', [
+		'depends' => [
+				\app\assets\AppAsset::className ()
+		]
+] );
+
 Pjax::begin();
 ?>
 <div class="page vertical-align text-center">
