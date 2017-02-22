@@ -9,7 +9,7 @@ use yii\bootstrap\ActiveForm;
 use yii\widgets\Pjax;
 use yii\web\View;
 
-$this->title = 'Login';
+$this->title = 'ASCO-SEP 5th Edition Online Self-assessment';
 $this->params['breadcrumbs'][] = $this->title;
 
 $this->registerCssFile ( '@web/css/register-v3.css', [
@@ -34,7 +34,7 @@ Pjax::begin();
 			<div class="panel-body">
 
 				<div class="site-login">
-				    <h1><?= Html::encode($this->title) ?></h1>
+				    <h2><?= Html::encode($this->title) ?></h2>
 				
 				
 				    <?php $form = ActiveForm::begin(); ?>
@@ -44,7 +44,7 @@ Pjax::begin();
 						</div>
 				
 						<div class="form-group">
-					        <?= $form->field($model, 'password')->passwordInput(['placeholder'=>'Contraseña'])->label(false) ?>
+					        <?= $form->field($model, 'password')->passwordInput(['placeholder'=>'Password'])->label(false) ?>
 						</div>
 				
 				        <?php $form->field($model, 'rememberMe')->checkbox([
@@ -52,16 +52,16 @@ Pjax::begin();
 				        ]) ?>
 				
 				        <div class="form-group">
-				               <?= Html::submitButton('<span class="ladda-label">Ingresar</span>', ['id'=>'submit-button','data-style'=>'zoom-in', 'class' =>'btn btn-success btn-block btn-lg margin-top-40 ladda-button']) ?>
+				               <?= Html::submitButton('<span class="ladda-label">Sign in</span>', ['id'=>'submit-button','data-style'=>'zoom-in', 'class' =>'btn btn-success btn-block btn-lg margin-top-40 ladda-button']) ?>
 				        </div>
 						<div class="form-group">
-							<?=Html::a('Registrarse', ['sign-up'], ['class'=>'btn btn-primary btn-block btn-lg'])?>
+							<?=Html::a('Create an account', ['sign-up'], ['class'=>'btn btn-primary btn-block btn-lg'])?>
 						</div>
 				    <?php ActiveForm::end(); ?>
 				    
 				</div>
 				<div class="col-md-12 text-right">
-				<?=Html::a('Olvide mi contraseña', ['peticion-pass'])?>
+				<?=Html::a('Forgot password', ['peticion-pass'])?>
 				</div>
 				
 			</div>
@@ -69,6 +69,8 @@ Pjax::begin();
 		</div>
 		
 	</div>
+	
+<!-- 	<button class="btn btn-default js-contact-us">Contact us</button> -->
 </div>
 
 <?php 
