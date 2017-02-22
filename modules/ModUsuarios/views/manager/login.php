@@ -55,15 +55,14 @@ Pjax::begin();
 				               <?= Html::submitButton('<span class="ladda-label">Ingresar</span>', ['id'=>'submit-button','data-style'=>'zoom-in', 'class' =>'btn btn-primary btn-block btn-lg margin-top-20 ladda-button']) ?>
 				               <?= Html::a('Registrarse', ['sign-up'], ['class' => 'btn btn-secondary btn-block btn-lg margin-top-10 margin-left-0 ladda-button'])?>
 				        </div>
-				
+						<div class="form-group">
+							<?=Html::a('Registrarse', ['sign-up'], ['class'=>'btn btn-primary btn-block btn-lg'])?>
+						</div>
 				    <?php ActiveForm::end(); ?>
 				    
 				</div>
 				<div class="col-md-12 text-right">
 				<?=Html::a('Olvide mi contraseña', ['peticion-pass'])?>
-				</div>
-				<div class="col-md-12 text-right">
-				
 				</div>
 			</div>
 		

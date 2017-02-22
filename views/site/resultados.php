@@ -1,4 +1,6 @@
 <?php
+use yii\helpers\Html;
+
 // Registro de css y javascript
 $this->registerCssFile ( '@web/webAssets/css/resultados.css', [ 
 		'depends' => [ 
@@ -59,7 +61,7 @@ foreach ( $respuestasUsuario as $respuestaUsuario ) {
 						<div class="col-md-12">
 						
 							<p>
-								<?='<p><strong>Justificación:</strong></p><p>' . $respuestaCorrecta->txt_justificacion.'</p>'?>
+								<?='<p><strong>Rationable:</strong></p><p>' . $respuestaCorrecta->txt_justificacion.'</p>'?>
 							</p>
 							
 							<p>
@@ -77,6 +79,18 @@ foreach ( $respuestasUsuario as $respuestaUsuario ) {
 // 	echo '<strong>Lectura sugerida</strong>' . $respuestaCorrecta->txt_lectura_sugerida . '<br><br>';
 }
 ?>
+
+
+
+</div>
+
+
+	</div>
+	
+	<div class="row">
+	<div class="col-md-6 col-md-offset-3">
+	<?=Html::a('Return to home', ['site/ver-modulos'], ['class'=>'btn btn-primary btn-block'])?>
+	<br><br>
 </div>
 	</div>
 </div>

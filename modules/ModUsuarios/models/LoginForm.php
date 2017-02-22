@@ -45,7 +45,7 @@ class LoginForm extends Model {
 						[ 
 								'username' 
 						],
-						'validateUsuario',
+						'existeUsuario',
 						'on' => 'recovery' 
 				],
 				[ 
@@ -101,6 +101,17 @@ class LoginForm extends Model {
 	}
 	
 	/**
+	 * Valida que el usuario exista
+	 */
+	public function existeUsuario($attribute, $params) {
+		$this->userEncontrado = $this->getUserNoActivado ();
+	
+		if (empty($this->userEncontrado)) {
+			$this->addError ( $attribute, 'No existe una cuenta asociada al corro electronico ingresado.' );
+		}
+	}
+	
+	/**
 	 * Logs in a user using the provided username and password.
 	 *
 	 * @return boolean whether the user is logged in successfully
@@ -122,11 +133,29 @@ class LoginForm extends Model {
 			$this->_user = EntUsuarios::findByEmail ( $this->username );
 			if($this->_user){
 				if($this->_user->id_status==1){
-					$this->addError('username', 'Su cuenta aún no ha sido activada. Revise su correo electronico');
+					$this->addError('username', 'Su cuenta aún no ha sido activada.');
 				}
 			}
 		}
 		
+		return $this->_user;
+	}
+	
+	/**
+	 * Finds user by [[username]]
+	 *
+	 * @return User|null
+	 */
+	public function getUserNoActivado() {
+		if ($this->_user === false) {
+			$this->_user = EntUsuarios::findByEmail ( $this->username );
+// 			if($this->_user){
+// 				if($this->_user->id_status==1){
+// 					$this->addError('username', 'Su cuenta aún no ha sido activada.');
+// 				}
+// 			}
+		}
+	
 		return $this->_user;
 	}
 }
