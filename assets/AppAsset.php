@@ -22,7 +22,8 @@ class AppAsset extends AssetBundle
     	'css/site.min.css',
         'webAssets/css/site.css',
     	'webAssets/plugins/ladda-bootstrap/dist/ladda-themeless.min.css',
-    	'webAssets/css/sweetalert.css'
+    	'webAssets/css/sweetalert.css',
+        'webAssets/css/style.css'
     ];
     public $js = [
     	'webAssets/plugins/ladda-bootstrap/dist/spin.min.js',

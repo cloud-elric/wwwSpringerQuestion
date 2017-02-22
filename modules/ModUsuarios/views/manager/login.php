@@ -52,7 +52,8 @@ Pjax::begin();
 				        ]) ?>
 				
 				        <div class="form-group">
-				               <?= Html::submitButton('<span class="ladda-label">Ingresar</span>', ['id'=>'submit-button','data-style'=>'zoom-in', 'class' =>'btn btn-primary btn-block btn-lg margin-top-40 ladda-button']) ?>
+				               <?= Html::submitButton('<span class="ladda-label">Ingresar</span>', ['id'=>'submit-button','data-style'=>'zoom-in', 'class' =>'btn btn-primary btn-block btn-lg margin-top-20 ladda-button']) ?>
+				               <?= Html::a('Registrarse', ['sign-up'], ['class' => 'btn btn-secondary btn-block btn-lg margin-top-10 margin-left-0 ladda-button'])?>
 				        </div>
 				
 				    <?php ActiveForm::end(); ?>
@@ -62,7 +63,7 @@ Pjax::begin();
 				<?=Html::a('Olvide mi contraseña', ['peticion-pass'])?>
 				</div>
 				<div class="col-md-12 text-right">
-				<?=Html::a('Registrarse', ['sign-up'])?>
+				
 				</div>
 			</div>
 		

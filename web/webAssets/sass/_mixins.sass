@@ -1,0 +1,108 @@
+// 
+// 
+//	-----------------------------------------------------------------------------
+// 
+//	0.3 - Mixins
+//			# Border Radius
+//			# Box Shadow
+//			# Media Queries
+//			# Transición
+// 
+//	-----------------------------------------------------------------------------
+//
+
+
+//	========================
+//	0.3 - Mixins
+//	========================
+
+//
+// Border Radius
+//
+=border-radius($radio)
+	-webkit-border-radius: $radio
+	-moz-border-radius: $radio
+	-ms-border-radius: $radio
+	border-radius: $radio
+
+// 
+// Box Shadow
+//
+=box-shadow($shadow)
+	-webkit-box-shadow: $shadow
+	-moz-box-shadow: $shadow
+	box-shadow: $shadow
+
+//
+// Media Queries
+//
+=respond-to($media)
+	@if $media == lg
+		@media (min-width: $screen-md + 1)
+			@content
+	@else if $media == md
+		@media (min-width: $screen-sm) and (max-width: $screen-md)
+			@content
+	@else if $media == sm
+		@media (min-width: $screen-xs) and (max-width: $screen-sm - 1)
+			@content
+	@else if $media == xs
+		@media screen and (max-width: $screen-xs)
+			@content
+	@else if $media == xx
+		@media screen and (max-width: $screen-xx)
+			@content
+//
+// Transición
+//
+=transition($delay)
+	-ms-transition: $delay
+	-moz-transition: $delay
+	-webkit-transition: $delay
+	transition: $delay
+
+//
+// Placeholder
+//
+=placeholder
+	&::-webkit-input-placeholder
+		@content
+	&:-moz-placeholder
+		@content
+	&::-moz-placeholder
+		@content
+	&:-ms-input-placeholder
+		@content
+
+//
+// Box Shadow
+//
+=box-shadow($level)
+	@if $level == 1
+		box-shadow: 0 1px 3px rgba($black,0.12), 0 1px 2px rgba($black,0.24)
+	@else if $level == 2
+		box-shadow: 0 3px 6px rgba($black,0.16), 0 3px 6px rgba($black,0.23)
+	@else if $level == 3
+		box-shadow: 0 10px 20px rgba($black,0.19), 0 6px 6px rgba($black,0.23)
+	@else if $level == 4
+		box-shadow: 0 14px 28px rgba($black,0.25), 0 10px 10px rgba($black,0.22)
+	@else if $level == 5
+		box-shadow: 0 19px 38px rgba($black,0.30), 0 15px 12px rgba($black,0.22)
+
+
+
+=keyframes($animation-name) 
+  @-webkit-keyframes #{$animation-name} 
+    @content
+  
+  @-moz-keyframes #{$animation-name} 
+    @content
+  
+  @-ms-keyframes #{$animation-name} 
+    @content
+  
+  @-o-keyframes #{$animation-name} 
+    @content
+  
+  @keyframes #{$animation-name} 
+    @content

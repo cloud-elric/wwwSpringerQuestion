@@ -1,0 +1,291 @@
+@charset "UTF-8";
+/*!
+	*	Micrositio Springer Cuestionarios Oncologicos ASCO SEP
+	*	Descripción...
+
+	# url         = http://www.certificaonco.com.mx=
+	# authors     Alfredo<@AlfieElizondo>
+	# copyright   Copyright (c) 2016, 2 Geeks one Monkey
+	*/
+/*!
+	--------------------------------------------------------
+	Pesado All Access .sass
+	--------------------------------------------------------
+	0.0 - Tipografía
+	1.0 - Normalizar
+	2.0 - Basicos
+			## Utility
+	3.0 - Login
+	3.5 - Headers
+	4.0 - Page-Home
+		- Page -Registro
+	5.0 -
+	6.0 -
+	7.0 - Footer
+	--------------------------------------------------------
+	*/
+/*!
+	-----------------------------------------------------------------------------
+
+	0.0 - Tipografía
+
+
+	----------------------------------------------------------------------------- */
+/* Fira Sans */
+@import url("https://fonts.googleapis.com/css?family=Fira+Sans:300,300i,400,400i,500,500i,700,700i");
+/*!
+	-----------------------------------------------------------------------------
+
+	2.0 - Basicos
+			# Basic
+			# Utility
+			# Extra
+
+	-----------------------------------------------------------------------------
+	*/
+/*  Basic
+	@mixin ========================================================================= */
+*,
+*:after,
+*:before {
+  box-sizing: border-box; }
+
+* {
+  margin: 0;
+  padding: 0; }
+
+body {
+  background-color: transparent;
+  font-family: "Fira Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  color: #000;
+  -webkit-font-smoothing: antialiased;
+  height: 100vh; }
+  @media screen and (max-width: 767px) {
+    body {
+      height: auto; } }
+
+/* a */
+a {
+  margin: 0;
+  padding: 0;
+  text-decoration: none !important;
+  color: #000;
+  font-family: "Fira Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  text-decoration: none;
+  -ms-transition: all 0.3s ease-in;
+  -moz-transition: all 0.3s ease-in;
+  -webkit-transition: all 0.3s ease-in;
+  transition: all 0.3s ease-in; }
+  a:hover {
+    text-decoration: none;
+    -ms-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -webkit-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out; }
+
+/* img */
+/* Utility
+   @mixin ========================================================================= */
+/* h1 - h6 */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  font-family: "Fira Sans", sans-serif;
+  font-weight: 600;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased; }
+
+h1,
+.h1 {
+  font-size: 2.8em; }
+
+h2,
+.h2 {
+  font-size: 2.4em; }
+
+h3,
+.h3 {
+  font-size: 2em; }
+
+h4,
+.h4 {
+  font-size: 1.6em; }
+
+h5,
+.h5 {
+  font-size: 1.4em; }
+
+h6,
+.h6 {
+  font-size: 1.2em; }
+
+p {
+  line-height: 1.5em;
+  -webkit-font-smoothing: antialiased; }
+
+/* hr */
+hr {
+  border: none;
+  margin: 0; }
+
+/* Wrap*/
+.wrap {
+  display: block; }
+
+/*  Btn
+    @mixin =============================================== */
+.btn,
+.btn-secondary {
+  display: inline-block;
+  line-height: .7em;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border: 1px solid transparent;
+  padding: 12px 30px;
+  font-size: 1rem;
+  font-family: "Fira Sans", sans-serif;
+  background-color: #55B0FE !important;
+  border-radius: 10px;
+  border: none;
+  color: #FFF;
+  height: 45px; }
+
+.btn-secondary {
+  background-color: #69DB55 !important; }
+
+.btn.active.focus,
+.btn.active:focus,
+.btn.focus,
+.btn:active.focus,
+.btn:active:focus,
+.btn:focus {
+  outline: none;
+  outline-offset: -2px; }
+
+.btn:focus,
+.btn:hover {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  text-decoration: none; }
+
+.btn.focus {
+  text-decoration: none; }
+
+.btn.active,
+.btn:active {
+  background-image: none;
+  outline: 0; }
+
+.btn.disabled,
+.btn:disabled {
+  cursor: not-allowed;
+  opacity: .65; }
+
+.btn-primary {
+  color: #FFF;
+  background-color: #000;
+  border-color: #000; }
+
+.btn-primary:hover,
+.btn-secondary:hover {
+  color: #FFF;
+  background-color: #000;
+  border-color: #000; }
+
+.btn-primary.focus,
+.btn-primary:focus {
+  color: #FFF;
+  background-color: #000;
+  border-color: #000; }
+
+.btn-primary.active,
+.btn-primary:active {
+  color: #FFF;
+  background-color: #000;
+  border-color: #000;
+  background-image: none; }
+
+input {
+  height: 45px !important; }
+
+/*  Misc
+    @mixin =============================================== */
+.gutter-wide {
+  padding: 0 40px; }
+
+.hidden {
+  display: none; }
+
+/*!
+	-----------------------------------------------------------------------------
+
+	3.5 - Header
+			# Extra
+
+	-----------------------------------------------------------------------------
+	*/
+/*  Header
+	@mixin ========================================================================= */
+/*!
+	-----------------------------------------------------------------------------
+
+	4.0 - Page-Home
+
+	-----------------------------------------------------------------------------
+	*/
+/*  Page-Home
+	@mixin ========================================================================= */
+/*!
+	-----------------------------------------------------------------------------
+
+	7.0 - Footer
+			# Extra
+
+	-----------------------------------------------------------------------------
+	*/
+.footer {
+  background-color: #000;
+  display: block;
+  height: 60px;
+  position: relative;
+  bottom: 0;
+  left: 0;
+  z-index: 5;
+  width: 100%; }
+  @media screen and (max-width: 767px) {
+    .footer {
+      padding: 10px 20px;
+      position: relative; } }
+  .footer .container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center; }
+    @media screen and (max-width: 767px) {
+      .footer .container {
+        padding: 0 20px; } }
+    .footer .container img {
+      margin: 0 40px; }
+      @media screen and (max-width: 767px) {
+        .footer .container img {
+          margin: 0 14px;
+          width: 60px; } }

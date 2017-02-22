@@ -1,0 +1,205 @@
+/*!
+	-----------------------------------------------------------------------------
+
+	2.0 - Basicos
+			# Basic
+			# Utility
+			# Extra
+
+	-----------------------------------------------------------------------------
+	*/
+
+/*  Basic
+	========================================================================== */
+*,
+*:after,
+*:before
+	box-sizing: border-box
+
+*
+	margin: 0
+	padding: 0
+
+
+
+html
+
+body
+	background-color: transparent
+	font:
+		family: $font-base
+		size: 16px
+		weight: 300
+	color: $text-body
+	-webkit-font-smoothing: antialiased
+	height: 100vh
+	+respond-to(xs)
+			height: auto
+
+
+/* a */
+a
+	margin: 0
+	padding: 0
+	text-decoration: none !important
+	color: $links
+	font:
+		family: $font-menu
+		size: 16px
+		weight: 400
+	text-decoration: none
+	+transition(all 0.3s ease-in)
+	&:hover
+		text-decoration: none
+		+transition(all 0.3s ease-out)
+
+/* img */
+
+/* Utility
+   ========================================================================== */
+/* h1 - h6 */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6
+	font:
+		family: $font-base
+		weight: 600
+	margin: 0
+	padding: 0
+	-webkit-font-smoothing: antialiased
+h1,
+.h1
+	font-size: 2.8em
+h2,
+.h2
+	font-size: 2.4em
+h3,
+.h3
+	font-size: 2em
+h4,
+.h4
+	font-size: 1.6em
+h5,
+.h5
+	font-size: 1.4em
+h6,
+.h6
+	font-size: 1.2em
+p
+	line-height: 1.5em
+	-webkit-font-smoothing: antialiased
+
+
+/* hr */
+hr
+	border: none
+	margin: 0
+
+/* Wrap*/
+.wrap
+	display: block
+
+
+
+/*  Btn
+    ================================================ */
+.btn,
+.btn-secondary
+	display: inline-block
+	line-height: .7em
+	text-align: center
+	white-space: nowrap
+	vertical-align: middle
+	cursor: pointer
+	-webkit-user-select: none
+	-moz-user-select: none
+	-ms-user-select: none
+	user-select: none
+	border: 1px solid transparent
+	padding: 12px 30px
+	font-size: 1rem
+	font-family: $font-menu
+	background-color: $btnPrimary !important
+	border-radius: 10px
+	border: none
+	color: $white
+	height: 45px
+	// border-radius: .25rem
+	//+box-shadow(2)
+
+.btn-secondary
+	background-color: $btnSecondary !important
+
+.btn.active.focus,
+.btn.active:focus,
+.btn.focus,
+.btn:active.focus,
+.btn:active:focus,
+.btn:focus 
+	outline: none
+	outline-offset: -2px
+
+.btn:focus,
+.btn:hover
+	+box-shadow(1)
+	text-decoration: none
+
+.btn.focus 
+	text-decoration: none
+
+.btn.active,
+.btn:active 
+	background-image: none
+	outline: 0
+
+.btn.disabled,
+.btn:disabled 
+	cursor: not-allowed
+	opacity: .65
+
+// Primary
+.btn-primary 
+	color: $white
+	background-color: $black
+	border-color: $black
+
+.btn-primary:hover,
+.btn-secondary:hover,
+	color: $white
+	background-color: $black
+	border-color: $black
+
+.btn-primary.focus,
+.btn-primary:focus 
+	color: $white
+	background-color: $black
+	border-color: $black
+
+.btn-primary.active,
+.btn-primary:active
+	color: $white
+	background-color: $black
+	border-color: $black
+	background-image: none
+
+input
+	height: 45px !important
+
+/*  Misc
+    ================================================ */
+
+.gutter-wide
+	padding: 0 40px
+
+.hidden
+	//opacity: 0
+	display: none
