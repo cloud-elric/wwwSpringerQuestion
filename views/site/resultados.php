@@ -1,5 +1,9 @@
 <?php
 use yii\helpers\Html;
+use app\models\ViewScoreModuloUsuario;
+use app\models\ViewUsuarioRespuesta;
+
+$this->title = 'ASCO-SEP 5th Edition Online Self-assessment';
 
 // Registro de css y javascript
 $this->registerCssFile ( '@web/webAssets/css/resultados.css', [ 
@@ -13,7 +17,11 @@ $this->registerCssFile ( '@web/webAssets/css/resultados.css', [
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">
+		
+		
+		
 <?php
+$i=1;
 foreach ( $respuestasUsuario as $respuestaUsuario ) {
 	$pregunta = $respuestaUsuario->idPregunta;
 	$respuestaCorrecta = $pregunta->getEntRespuestas ()->where ( [ 
@@ -21,8 +29,36 @@ foreach ( $respuestasUsuario as $respuestaUsuario ) {
 	] )->one ();
 	$respuesta = $respuestaUsuario->idRespuesta;
 	$isCorrecta = $respuesta->id_respuesta==$respuestaCorrecta->id_respuesta;
+	
+	$score = ViewScoreModuloUsuario::find()->where(['id_modulo'=>$pregunta->id_modulo, 'id_usuario'=>$respuestaUsuario->id_usuario])->one();
+	
 	?>
 	
+	<?php if($i==1){?>
+	
+	<div class="panel panel-info">
+			<div class="panel-heading">
+			<h4>Your results</h4>
+			</div>
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-md-8 col-md-offset-2">
+						<div class="row">
+							<div class="col-md-6">
+								<h4>Your score: <?=$score?$score->num_puntuacion_usuario:0?></h4>
+							</div>
+							<div class="col-md-6">
+								<h4><?=ViewUsuarioRespuesta::find()->where(['id_modulo'=>$pregunta->id_modulo, 'id_usuario'=>$respuestaUsuario->id_usuario, 'b_correcto'=>1])->count()?> correct answer of out <?=count($respuestasUsuario)?></h4> 
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+	<?php 
+	$i++;
+	}?>
 	<div class="panel">
 				<div class="panel-body">
 					<div class="row">
