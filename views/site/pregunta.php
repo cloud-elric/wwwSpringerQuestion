@@ -2,6 +2,8 @@
 use yii\helpers\Html;
 use yii\web\View;
 
+$this->title = 'ASCO-SEP 5th Edition Online Self-assessment';
+
 // Registro de css y javascript
 $this->registerCssFile ( '@web/webAssets/css/resultados.css', [
 		'depends' => [
@@ -47,7 +49,7 @@ echo Html::beginForm( [
 							?>
 						</div>
 						<div class="col-md-12 text-center">
-						<?=Html::submitButton('<span class="ladda-label">Siguiente</span>', ['id' => 'btn_siguinte', 'class' => 'btn btn-success ladda-button', 'data-style' => 'zoom-in'])?>
+						<?=Html::submitButton('<span class="ladda-label">Next</span>', ['id' => 'btn_siguinte', 'class' => 'btn btn-success ladda-button', 'data-style' => 'zoom-in'])?>
 						</div>
 					</div>
 				</div>
@@ -73,7 +75,7 @@ $this->registerJs ( "
 				
 // 			}else{
 // 				e.preventDefault();
-// 				swal('Cuestionario', 'Necesitas contestar la pregunta!');
+// 				swal('Cuestionario', 'To proceed select the best answer from the given options');
 // 				boton.stop();
 // 				return false;	
 // 			}			
@@ -92,7 +94,7 @@ $this->registerJs ( "
 		if($('input.js_radio_preg').is(':checked')){
 			return true;	
 		}else{
-			swal('Cuestionario', 'Necesitas contestar la pregunta!');
+			swal('Cuestionario', 'To proceed select the best answer from the given options');
 			boton.stop();
 			return false;	
 		}	

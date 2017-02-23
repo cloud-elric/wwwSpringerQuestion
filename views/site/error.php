@@ -7,7 +7,7 @@
 
 use yii\helpers\Html;
 
-$this->title = $name;
+$this->title = 'ASCO-SEP 5th Edition Online Self-assessment';
 ?>
 <div class="site-error">
 

@@ -9,14 +9,14 @@ use yii\web\View;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['id' => 'sign-form',]); ?>
     
 	<div class="form-group">
-	    <?= $form->field($model, 'txt_username')->textInput(['maxlength' => true, 'placeholder'=>'Nombre'])->label(false) ?>
+	    <?= $form->field($model, 'txt_username')->textInput(['maxlength' => true, 'placeholder'=>'Firts name'])->label(false) ?>
 	</div>
 	
 	<div class="form-group">
-	    <?= $form->field($model, 'txt_apellido_paterno')->textInput(['maxlength' => true, 'placeholder'=>'Apellido paterno'])->label(false) ?>
+	    <?= $form->field($model, 'txt_apellido_paterno')->textInput(['maxlength' => true, 'placeholder'=>'Last name'])->label(false) ?>
 	</div>
 	
 	<!-- <div class="form-group">
@@ -24,11 +24,12 @@ use yii\web\View;
 	</div> -->
 	
 	<div class="form-group">
-	    <?= $form->field($model, 'txt_email')->textInput(['maxlength' => true, 'placeholder'=>'Correo eléctronico'])->label(false) ?>
+	    <?= $form->field($model, 'txt_email')->textInput(['maxlength' => true, 'placeholder'=>'Email'])->label(false) ?>
     </div>
     
     <div class="form-group">
-	    <?= $form->field($model, 'codigo')->textInput(['maxlength' => true, 'placeholder'=>'Código'])->label(false) ?>
+	    <?= $form->field($model, 'codigo')->textInput(['maxlength' => true, 'placeholder'=>'Activation code'])->label(false) ?>
+	    <p>Please use the activation code, located on the card that you books.</p>
     </div>
     
     <?php $form->field($model, 'password')->passwordInput(['maxlength' => true]);
@@ -40,7 +41,7 @@ use yii\web\View;
  </div>
  
     <div class="form-group">
-        <?= Html::submitButton('<span class="ladda-label">'.($model->isNewRecord ? 'Registrar' : 'Actualizar').'</span>', ['id'=>'submit-button','data-style'=>'zoom-in', 'class' =>($model->isNewRecord ? 'btn btn-success btn-block btn-lg margin-top-40' : 'btn btn-primary btn-block btn-lg margin-top-40'). ' ladda-button']) ?>
+        <?= Html::submitButton('<span class="ladda-label">'.($model->isNewRecord ? 'Sign in' : 'Actualizar').'</span>', ['id'=>'submit-button','data-style'=>'zoom-in', 'class' =>($model->isNewRecord ? 'btn btn-success btn-block btn-lg margin-top-40' : 'btn btn-primary btn-block btn-lg margin-top-40'). ' ladda-button']) ?>
     </div>
     
     <?php ActiveForm::end(); ?>
@@ -48,7 +49,7 @@ use yii\web\View;
 $this->registerJs ( "
 $('body').on(
 		'beforeSubmit',
-		'form',
+		'sign-form',
 		function() {
 		
 		
@@ -114,7 +115,7 @@ $(document).ready(function(){
 			 <p>Mauris egestas dignissim vestibulum. Donec vehicula rhoncus vehicula. Integer vel porttitor lorem. Pellentesque ac enim quis elit cursus varius vel commodo risus. Fusce posuere pharetra nunc, et lobortis metus sollicitudin sed. In condimentum magna quis lacus pretium, at eleifend sapien dictum. Phasellus pellentesque augue at dignissim tincidunt. Quisque nec sapien non sem commodo congue. Integer urna elit, consequat sit amet tortor ut, interdum dignissim nisl. Nullam eget tortor lacinia, aliquet purus eu, consectetur mauris. Aenean vestibulum ac neque eu congue. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce consequat mi erat, nec faucibus eros commodo sed.</p>
       </div>
       <div class="modal-footer text-center">
-        <button type="button" class="btn btn-primary" id="js-aceptar-aviso">He leído aviso de privacidad</button>
+        <button type="button" class="btn btn-primary" id="js-aceptar-aviso">Read privacy policy</button>
       </div>
     </div>
   </div>

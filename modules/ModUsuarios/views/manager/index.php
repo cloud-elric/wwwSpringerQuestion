@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\SearchUsuarios */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Ent Usuarios';
+$this->title = 'ASCO-SEP 5th Edition Online Self-assessment';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="ent-usuarios-index">

@@ -1,6 +1,6 @@
 <?php
 use yii\helpers\Html;
-
+$this->title = 'ASCO-SEP 5th Edition Online Self-assessment';
 // Registro de css y javascript
 $this->registerCssFile ( '@web/webAssets/css/ver-modulos.css', [ 
 		'depends' => [ 
@@ -66,22 +66,30 @@ $porcentaje = 0;
 	</div>
 	
 	<div class="row">
-	<div class=" col-md-12">
-		<div class="panel">
-			<div class="panel-body">
-				<p>INSTRUCCIONES:</p>
-				<p>Leer detenidamente cada una de los capitulos contenidos en la seccion impresa.</p>
-				<p>Una vez finalizada la lectutura podrá acceder al módulo de evaluación, el cual está localizado en la página <a target="_blank" href="http://www.certificaonco.com.mx">www.certificaonco.com.mx</a></p>
-				<p>Si es la primera vez que ingresa, tendrá que seguir el proceso de registro, durante el cual le solicitará sus datos personales, aceptar el aviso de privacidad, asi como
-				colocar la clave de acceso contenida en este material.</p>
-				<p>Puede ir realizando las evaluaciones de manera parcial o bien aplicar a los mismos en una sola sesión.</p>
-				<p>Una vez terminada cada una de las evaluaciones podrá consultar las respuestas correctas.Tendrá acceso también a la calificación de cada uno de los módulos.</p>
-				<p>Para solicitar el diploma con la acreditación de los puntos de recertificación pulse Diploma.</p>
-				<p>Dudas y aclaraciones, mande un e-mail a la siguiente direccion: </p>
+		<div class="col-md-12">
+		<div class="alert alert-info" role="alert" id="js-instrucciones">
+				Choose the topic that you want to do a quiz on from the list that appears:
 			</div>
 		</div>
-		</div>
 	</div>
+	
+<!-- 	<div class="row"> -->
+<!-- 	<div class=" col-md-12"> -->
+<!-- 		<div class="panel"> -->
+<!-- 			<div class="panel-body"> -->
+<!-- 				<p>INSTRUCCIONES:</p> -->
+<!-- 				<p>Leer detenidamente cada una de los capitulos contenidos en la seccion impresa.</p> -->
+<!-- 				<p>Una vez finalizada la lectutura podrá acceder al módulo de evaluación, el cual está localizado en la página <a target="_blank" href="http://www.certificaonco.com.mx">www.certificaonco.com.mx</a></p> -->
+<!-- 				<p>Si es la primera vez que ingresa, tendrá que seguir el proceso de registro, durante el cual le solicitará sus datos personales, aceptar el aviso de privacidad, asi como -->
+<!-- 				colocar la clave de acceso contenida en este material.</p> -->
+<!-- 				<p>Puede ir realizando las evaluaciones de manera parcial o bien aplicar a los mismos en una sola sesión.</p> -->
+<!-- 				<p>Una vez terminada cada una de las evaluaciones podrá consultar las respuestas correctas.Tendrá acceso también a la calificación de cada uno de los módulos.</p> -->
+<!-- 				<p>Para solicitar el diploma con la acreditación de los puntos de recertificación pulse Diploma.</p> -->
+<!-- 				<p>Dudas y aclaraciones, mande un e-mail a la siguiente direccion: </p> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+<!-- 		</div> -->
+<!-- 	</div> -->
 	
 	<div class="row  ver-modulos">
 		<?php
@@ -97,13 +105,13 @@ $porcentaje = 0;
 			] )->count ();
 			?>
 			
-			<div class="col-md-4">
+			<div class="col-md-3">
 			<a
 				class="<?=($numPreguntasContestadas==$numPreguntas)&&$numPreguntas>0?'complete':''?>"
 				href="<?=Yii::$app->urlManager->createAbsoluteUrl ( ['site/ver-preguntas', 'modulo'=>$modulo->id_modulo] )?>">
 				<div class="panel">
 					<div class="panel-body">
-						<h3 class="text-center"><?=$modulo->txt_nombre?></h3>
+						<h6 class="text-center"><?=$modulo->txt_nombre?></h6>
 					</div>
 					<div class="panel-footer">
 						<p class="text-right">

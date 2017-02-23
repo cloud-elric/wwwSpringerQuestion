@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-
+$this->title = 'ASCO-SEP 5th Edition Online Self-assessment';
 /* @var $this yii\web\View */
 /* @var $model app\models\EntUsuarios */
 /* @var $form yii\widgets\ActiveForm */

@@ -4,7 +4,7 @@ use yii\bootstrap\ActiveForm;
 use yii\widgets\Pjax;
 
 
-$this->title = 'Password recovery';
+$this->title = 'ASCO-SEP 5th Edition Online Self-assessment';
 $this->registerCssFile ( '@web/css/register-v3.css', [
 	'depends' => [
 		\app\assets\AppAsset::className ()

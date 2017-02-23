@@ -216,7 +216,7 @@ class EntUsuarios extends \yii\db\ActiveRecord implements IdentityInterface
 				'fch_creacion' => 'Fch Creacion',
 				'fch_actualizacion' => 'Fch Actualizacion',
 				'id_status' => 'Id Status',
-				'aceptarTerminos'=>'He leído aviso de privacidad'
+				'aceptarTerminos'=>'Privacy policy'
 		];
 	}
 	

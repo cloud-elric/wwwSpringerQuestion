@@ -21,9 +21,9 @@ return [
 				],
 				'mandarCorreoActivacion' => true, // Envia correo electronico para activar la cuenta del usuario
 				'email' => [
-						'emailActivacion' => 'welcome@2gom.com.mx',
-						'subjectActivacion' => 'Activar cuenta',
-						'emailRecuperarPass' => 'support@2gom.com.mx',
+						'emailActivacion' => 'bienvenido@certificaonco.com.mx',
+						'subjectActivacion' => 'ASCO-SEP 5th Edition Online Self-assessment, activation process',
+						'emailRecuperarPass' => 'bienvenido@certificaonco.com.mx',
 						'subjectRecuperarPass' => 'Recuperar contraseña'
 				],
 				'recueperarPass' => [

@@ -2,12 +2,11 @@
 
 use yii\helpers\Html;
 use yii\widgets\Pjax;
-
+$this->title = 'ASCO-SEP 5th Edition Online Self-assessment';
 
 /* @var $this yii\web\View */
 /* @var $model app\models\EntUsuarios */
 
-$this->title = 'Registro';
 // $this->params['breadcrumbs'][] = ['label' => 'Ent Usuarios', 'url' => ['index']];
 // $this->params['breadcrumbs'][] = $this->title;
 
