@@ -23,6 +23,7 @@ $this->registerCssFile ( '@web/css/bootstrap-extend.min.css', [
 				\app\assets\AppAsset::className ()
 		]
 ] );
+
 Pjax::begin();
 ?>
 
