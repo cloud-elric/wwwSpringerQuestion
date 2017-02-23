@@ -140,7 +140,12 @@ class SiteController extends Controller {
 	 * @param unknown $modulo        	
 	 * @return string
 	 */
-	public function actionVerPreguntas($modulo = null) {
+	public function actionVerPreguntas($modulo = null, $primeraVez=null) {
+		
+		if($primeraVez){
+			return $this->render('mensajeInicial');
+		}
+		
 		$session = Yii::$app->session;
 		$usuario = Yii::$app->user->identity;
 		

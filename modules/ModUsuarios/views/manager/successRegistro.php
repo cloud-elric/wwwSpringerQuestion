@@ -2,7 +2,7 @@
 use yii\widgets\Pjax;
 use yii\helpers\Html;
 
-$this->title = "Success";
+$this->title = 'ASCO-SEP 5th Edition Online Self-assessment';
 $this->registerCssFile ( '@web/css/register-v3.css', [
 		'depends' => [
 				\app\assets\AppAsset::className ()

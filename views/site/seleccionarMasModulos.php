@@ -1,6 +1,8 @@
 <?php
 use yii\helpers\Html;
 
+$this->title = 'ASCO-SEP 5th Edition Online Self-assessment';
+
 // Registro de css y javascript
 $this->registerCssFile ( '@web/webAssets/css/ver-modulos.css', [
 		'depends' => [

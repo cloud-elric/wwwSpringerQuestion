@@ -40,19 +40,12 @@ AppAsset::register($this);
                 ['label' => 'Login', 'url' => ['/site/login']]
             ) : (
                 '<li>'
-                . Html::beginForm(['/site/logout'], 'post', ['class' => 'navbar-form'])
-                . Html::submitButton(
-                    'Logout',
-                    ['class' => 'btn btn-link']
-                )
-                . Html::endForm()
-                . '</li>'.
-            		'<li>'
             				. Html::a(
             						'Logout',
-            						['seleccionar-mas-modulos']
+            						['logout']
             						)
             						. '</li>'
+            		
             )
         ],
     ]);

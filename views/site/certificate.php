@@ -1,3 +1,6 @@
+<?php 
+$this->title = 'ASCO-SEP 5th Edition Online Self-assessment';
+?>
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">

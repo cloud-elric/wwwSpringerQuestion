@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\EntUsuarios */
 
-$this->title = $model->id_usuario;
+$this->title = 'ASCO-SEP 5th Edition Online Self-assessment';
 $this->params['breadcrumbs'][] = ['label' => 'Ent Usuarios', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

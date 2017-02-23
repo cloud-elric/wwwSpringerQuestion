@@ -1,5 +1,5 @@
 .ver-modulos .panel-body{
-	min-height: 150px;
+	
 	display: flex;
     justify-content: center;
     align-items: center;
@@ -9,7 +9,7 @@
 }
 
 .ver-modulos .panel-footer {
-    padding: 10px 15px;
+    padding: 5px;
     background-color: #f5f5f5;
     border-top: 1px solid #ddd;
     border-bottom-right-radius: 3px;
@@ -34,4 +34,8 @@ a.complete:hover {
 
 a.complete:active {
       color:white;
+}
+
+.ver-modulos .panel-footer p{
+	margin:0;
 }

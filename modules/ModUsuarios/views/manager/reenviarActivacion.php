@@ -7,7 +7,7 @@ use yii\widgets\ActiveForm;
 /* @var $model app\models\EntUsuarios */
 /* @var $form yii\widgets\ActiveForm */
 
-$this->title = 'Reenviar correo de activación';
+$this->title = 'ASCO-SEP 5th Edition Online Self-assessment';
 ?>
 
 <div class="ent-usuarios-form">
