@@ -1,6 +1,7 @@
 <?php
 use yii\helpers\Html;
 use yii\web\View;
+use app\models\EntRespuestasUsuarios;
 
 $this->title = 'ASCO-SEP 5th Edition Online Self-assessment';
 
@@ -14,6 +15,7 @@ $this->registerCssFile ( '@web/webAssets/css/resultados.css', [
 echo Html::beginForm( [ 
 		'ver-preguntas',
 		'modulo' => $modulo->id_modulo,
+		'id'=>$pregunta->id_pregunta
 		
 ], 'post', ['id'=> 'form_preg']);
 ?>
@@ -34,10 +36,15 @@ echo Html::beginForm( [
 							
 							foreach ( $pregunta->entRespuestas as $respuesta ) {
 								?>
-								<div class="col-md-6">
+								<div class="col-md-12">
 									<div class="alert alert-info" role="alert">
 										<p>
-											<?= Html::radio ( 'respuesta', false, [ 
+										<?php 
+										
+										$respuestaUsuario = EntRespuestasUsuarios::find()->where(['id_respuesta'=>$respuesta->id_respuesta, 'id_modulo'=>$modulo->id_modulo, 'id_usuario'=>Yii::$app->user->identity->id_usuario])->one();
+										
+										?>
+											<?= Html::radio ( 'respuesta', $respuestaUsuario, [ 
 			'value' => $respuesta->id_respuesta,
 			'class' => 'js_radio_preg'
 	] ) . $respuesta->txt_letra . ".-" . $respuesta->txt_respuesta ?>
@@ -48,9 +55,27 @@ echo Html::beginForm( [
 							}
 							?>
 						</div>
-						<div class="col-md-12 text-center">
-						<?=Html::submitButton('<span class="ladda-label">Next</span>', ['id' => 'btn_siguinte', 'class' => 'btn btn-success ladda-button', 'data-style' => 'zoom-in'])?>
-						</div>
+						
+						<?php if($pregunta->num_orden>1){?>
+							<div class="col-md-6 text-center">
+							<?=Html::a('<span class="ladda-label">Preview</span>',['ver-preguntas', 'modulo'=>$modulo->id_modulo, 'id'=>$preguntaAnterior->id_pregunta], ['id' => 'btn_anterior', 'class' => 'btn btn-success ladda-button', 'data-style' => 'zoom-in'])?>
+							</div>
+						<?php }
+						
+						if($numPreguntas == $pregunta->num_orden){
+							$button = 'btn_finish';
+							?>
+							<div class="col-md-6 text-center">
+							<?=Html::a('<span class="ladda-label">Finish</span>',[''], ['id' => $button, 'class' => 'btn btn-success ladda-button', 'data-style' => 'zoom-in'])?>
+							</div>
+						<?php }else{
+							$button = 'btn_siguiente';
+							?>
+						<div class="col-md-6 text-center">
+							<?=Html::submitButton('<span class="ladda-label">Next</span>', ['id' => $button, 'class' => 'btn btn-success ladda-button', 'data-style' => 'zoom-in'])?>
+							</div>
+						
+						<?php }?>	
 					</div>
 				</div>
 			</div>
@@ -75,7 +100,7 @@ $this->registerJs ( "
 				
 // 			}else{
 // 				e.preventDefault();
-// 				swal('Cuestionario', 'To proceed select the best answer from the given options');
+// 				swal('Wait', 'To proceed select the best answer from the given options');
 // 				boton.stop();
 // 				return false;	
 // 			}			
@@ -88,17 +113,51 @@ $this->registerJs ( "
 });
 		
 	$('#form_preg').submit(function(){
-		var boton = Ladda.create(document.getElementById('btn_siguinte'));
+		var boton = Ladda.create(document.getElementById('".$button."'));
 		boton.start();
 			
 		if($('input.js_radio_preg').is(':checked')){
 			return true;	
 		}else{
-			swal('Cuestionario', 'To proceed select the best answer from the given options');
+			swal('Wait', 'To proceed select the best answer from the given options');
 			boton.stop();
 			return false;	
 		}	
 	});
+		
+	$('#btn_anterior').on('click', function(e){
+		
+		var boton = Ladda.create(this);
+		boton.start();
+		
+	});	
+	
+	$('#btn_finish').on('click', function(e){
+		e.preventDefault();
+// 		var boton = Ladda.create(this);
+// 		boton.start();
+
+		swal({
+  title: 'Finished?',
+  text: 'You will not be able to recover this module',
+  type: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#DD6B55',
+  confirmButtonText: 'Yes, finish',
+  cancelButtonText: 'No, I change someone answers',
+  closeOnConfirm: false,
+ // closeOnCancel: false
+},
+function(isConfirm){
+  if (isConfirm) {
+    $('#form_preg').submit();
+  } else {
+    
+  }
+});
+		
+	});		
+		
 ", View::POS_END );
 ?>
 

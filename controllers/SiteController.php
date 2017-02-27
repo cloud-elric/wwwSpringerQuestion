@@ -13,6 +13,8 @@ use app\models\CatCodigos;
 use app\models\RelUsuarioModulos;
 use app\models\ViewModulosPuntuaje;
 use app\models\ViewScoreTotalUsuario;
+use app\models\ContactUs;
+use yii\web\Response;
 
 class SiteController extends Controller {
 	/**
@@ -134,69 +136,128 @@ class SiteController extends Controller {
 		] );
 	}
 	
+	
 	/**
 	 * Muestra la siguiente pregunta no contestada del modulo
 	 *
 	 * @param unknown $modulo        	
 	 * @return string
 	 */
-	public function actionVerPreguntas($modulo = null, $primeraVez=null) {
+	public function actionVerPreguntas($modulo = null, $id=null) {
 		
-		if($primeraVez){
-			return $this->render('mensajeInicial');
-		}
-		
-		$session = Yii::$app->session;
 		$usuario = Yii::$app->user->identity;
 		
 		$moduloGet = $this->getModuloById ( $modulo );
 		
-		$preguntasContestadas = EntRespuestasUsuarios::find ()->where ( [ 
-				'id_usuario' => $usuario->id_usuario,
-				'id_modulo' => $moduloGet->id_modulo 
-		] )->select ( 'id_pregunta' );
-		
-		$pregunta = $this->getPreguntaRandom ( $moduloGet->id_modulo, $preguntasContestadas );
-		
-		if (empty ( $pregunta )) {
+		/**
+		 * Si ya contesto el modulo 
+		 */
+		if(RelUsuarioModulos::find()->where(['b_finish'=>1, 'id_modulo'=>$moduloGet->id_modulo])->one()){
 			return $this->redirect ( [ 
 					'resultados',
 					'id' => $moduloGet->id_modulo 
 			] );
 		}
 		
+		$preguntaAnterior = null;
+		
+		
+		
+		
+		/**
+		 * Obtiene la sigiente pregunta
+		 * @var Ambigous <\yii\db\ActiveRecord, \app\controllers\NULL> $pregunta
+		 */
+		if($id){ 
+			$pregunta =EntPreguntas::find()->where(['id_modulo'=>$moduloGet->id_modulo, 'id_pregunta'=>$id])->one();
+			
+			if (empty ( $pregunta )) {
+				return $this->redirect ( [
+						'ver-modulos',
+						//'id' => $moduloGet->id_modulo
+				] );
+			}
+			
+			$preguntaAnterior = EntPreguntas::find()->where(['id_modulo'=>$moduloGet->id_modulo, 'num_orden'=>($pregunta->num_orden - 1)])->one();
+			
+		}else{
+			
+			$respuestasContestadas = EntRespuestasUsuarios::find()->where([
+					'id_usuario' => $usuario->id_usuario,
+					'id_modulo' => $moduloGet->id_modulo
+			] )->select('id_pregunta');
+			
+			if(empty($respuestasContestadas)){
+				$pregunta =EntPreguntas::find()->where(['id_modulo'=>$moduloGet->id_modulo, 'num_orden'=>1])->one();
+				$preguntaAnterior = $pregunta;
+			}else{
+			
+				$pregunta = $this->getPreguntaRandom($moduloGet->id_modulo, $respuestasContestadas);
+				
+				if(empty($pregunta)){
+					return $this->redirect(['resultados', 'id'=>$moduloGet->id_modulo]);
+				}
+				
+				$preguntaAnterior = EntPreguntas::find()->where(['id_modulo'=>$moduloGet->id_modulo, 'num_orden'=>($pregunta->num_orden - 1)])->one();
+			}
+			
+		}
+		
+		
+		$numRespuestas =  EntRespuestasUsuarios::find ()->where ( [ 
+					'id_usuario' => $usuario->id_usuario,
+					'id_modulo' => $moduloGet->id_modulo 
+			] )->count ();
+		
+			$numPreguntas = EntPreguntas::find()->where(['id_modulo'=>$moduloGet->id_modulo])->count();
+		
 		// si se envia la respuesta
 		if (isset ( $_POST ['respuesta'] )) {
 			
 			// Verificacion de usuario no haya contestado antes la pregunta
-			$existeRespuesta = EntRespuestasUsuarios::find ()->where ( [ 
+			$guardarRespuesta = EntRespuestasUsuarios::find ()->where ( [ 
 					'id_usuario' => $usuario->id_usuario,
 					'id_pregunta' => $pregunta->id_pregunta,
 					'id_modulo' => $moduloGet->id_modulo 
 			] )->one ();
 			
 			// si el usuario no ha contestado la pregunta guardaremos su respuesta
-			if (empty ( $existeRespuesta )) {
+			if (empty ( $guardarRespuesta )) {
 				$guardarRespuesta = new EntRespuestasUsuarios ();
-				$guardarRespuesta->id_modulo = $moduloGet->id_modulo;
-				$guardarRespuesta->id_pregunta = $pregunta->id_pregunta;
-				$guardarRespuesta->id_usuario = $usuario->id_usuario;
-				$guardarRespuesta->id_respuesta = $_POST ['respuesta'];
 				
-				if ($guardarRespuesta->save ()) {
-					return $this->redirect ( [ 
-							'ver-preguntas',
-							'modulo' => $moduloGet->id_modulo 
-					] );
-				}
 			} else {
 				// $session->setFlash('contestada', 'Ya haz respondido esta pregunta');
 			}
+			
+			$guardarRespuesta->id_modulo = $moduloGet->id_modulo;
+			$guardarRespuesta->id_pregunta = $pregunta->id_pregunta;
+			$guardarRespuesta->id_usuario = $usuario->id_usuario;
+			$guardarRespuesta->id_respuesta = $_POST ['respuesta'];
+			
+			if ($guardarRespuesta->save ()) {
+				
+				$nuevaPregunta = EntPreguntas::find()->where(['id_modulo'=>$moduloGet->id_modulo])->andWhere('num_orden > '.$pregunta->num_orden)->one();
+				
+				if(empty($nuevaPregunta)){
+					return $this->redirect(['resultados', 'id'=>$moduloGet->id_modulo]);
+				}
+				
+				return $this->redirect ( [
+						'ver-preguntas',
+						'modulo' => $moduloGet->id_modulo,
+						'id'=>$nuevaPregunta->id_pregunta
+				] );
+			}
+			
 		}
+		
 		
 		return $this->render ( 'pregunta', [ 
 				'pregunta' => $pregunta,
-				'modulo' => $moduloGet 
+				'modulo' => $moduloGet,
+				'numRespuestas'=>$numRespuestas,
+				'numPreguntas'=>$numPreguntas,
+				'preguntaAnterior'=>$preguntaAnterior
 		] );
 	}
 	public function actionResultados($id = null) {
@@ -291,6 +352,22 @@ class SiteController extends Controller {
 		return $this->render ( 'seleccionarMasModulos', [
 				'modulos' => $modulos
 		] );
+	}
+	
+	public function actionContactUs(){
+		$model = new ContactUs();
+		Yii::$app->response->format = Response::FORMAT_JSON;
+		if($model->load(Yii::$app->request->post())){
+			// the message
+			$msg = "Email: ".$model->email."\nDescription:".$model->description;
+			
+			// send email
+			mail("humberto@2gom.com.mx","Problema",$msg);
+			
+			return ['status'=>'success'];
+		}
+		
+		return ['status'=>'error'];
 	}
 	
 // 	public function actionGenerarCodigos() {

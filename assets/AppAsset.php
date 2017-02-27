@@ -28,7 +28,9 @@ class AppAsset extends AssetBundle
     public $js = [
     	'webAssets/plugins/ladda-bootstrap/dist/spin.min.js',
     	'webAssets/plugins/ladda-bootstrap/dist/ladda.min.js',
-    	'webAssets/js/sweetalert.min.js'
+    	'webAssets/js/sweetalert.min.js',
+    	'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js',
+    	'webAssets/js/contact-us.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

@@ -76,7 +76,7 @@ foreach ( $respuestasUsuario as $respuestaUsuario ) {
 							foreach($pregunta->entRespuestas as $respuestaP){
 							$acierto = (($respuestaP->id_respuesta==$respuesta->id_respuesta)&&($respuestaP));
 								?>
-								<div class="col-md-6">
+								<div class="col-md-12">
 									<div class="alert <?=$acierto?'alert-warning':'alert-info'?>" role="alert">
 										<p>
 											<?=$respuestaP->txt_letra . '.-' . $respuestaP->txt_respuesta?>
@@ -88,7 +88,7 @@ foreach ( $respuestasUsuario as $respuestaUsuario ) {
 							?>
 						</div>
 						
-						<div class="col-md-4 col-md-offset-4">
+						<div class="col-md-12">
 							<div class="alert alert-success">
 									<strong>Correct answer:</strong> <?=$respuestaCorrecta->txt_letra . '.-' . $respuestaCorrecta->txt_respuesta?>
 							</div>

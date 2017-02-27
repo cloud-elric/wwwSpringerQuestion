@@ -38,7 +38,7 @@ Pjax::begin();
 				    <h2><?= Html::encode($this->title) ?></h2>
 				
 				
-				    <?php $form = ActiveForm::begin(); ?>
+				    <?php $form = ActiveForm::begin(['id'=>'form-login']); ?>
 						
 						<div class="form-group">
 				    	    <?= $form->field($model, 'username')->textInput(['placeholder'=>'Email'])->label(false) ?>
@@ -78,7 +78,7 @@ Pjax::begin();
 $this->registerJs ( "
 $('body').on(
 		'beforeSubmit',
-		'form',
+		'#form-login',
 		function() {
 			var form = $(this);
 			// return false if form still have some validation errors

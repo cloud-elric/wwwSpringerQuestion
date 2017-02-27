@@ -206,8 +206,8 @@ class EntUsuarios extends \yii\db\ActiveRecord implements IdentityInterface
 		return [ 
 				'id_usuario' => 'Id Usuario',
 				'txt_token' => 'Txt Token',
-				'txt_username' => 'Nombre',
-				'txt_apellido_paterno' => 'Apellido paterno',
+				'txt_username' => 'Nombre (aparecerá en el certificado)',
+				'txt_apellido_paterno' => 'Apellido paterno (aparecerá en el certificado)',
 				'txt_apellido_materno' => 'Apellido materno',
 				'txt_auth_key' => 'Txt Auth Key',
 				'txt_password_hash' => 'Txt Password Hash',
@@ -216,7 +216,7 @@ class EntUsuarios extends \yii\db\ActiveRecord implements IdentityInterface
 				'fch_creacion' => 'Fch Creacion',
 				'fch_actualizacion' => 'Fch Actualizacion',
 				'id_status' => 'Id Status',
-				'aceptarTerminos'=>'Privacy policy'
+				'aceptarTerminos'=>'Acepto que conozco el contenido del presente Aviso de Privacidad y estoy de acuerdo con el tratamiento de los datos personales en los términos expresados en dicho Aviso'
 		];
 	}
 	

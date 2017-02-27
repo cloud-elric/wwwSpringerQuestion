@@ -21,7 +21,7 @@ echo Html::beginForm( [
 		foreach ( $modulos as $modulo ) {
 			?>
 			
-			<div class="col-md-4">
+			<div class="col-md-3">
 
 			<div class="panel">
 				<div class="panel-body">
@@ -33,12 +33,12 @@ echo Html::beginForm( [
 					</div>
 					
 					<label for="check-<?=$modulo->id_modulo?>" >
-							<h3 class="text-center"><?=$modulo->txt_nombre?></h3>
+							<h6 class="text-center"><?=$modulo->txt_nombre?></h6>
 						</label>
 					
 				</div>
 				<div class="panel-footer">
-					<h5>Max score: <strong><?=$modulo->num_puntuacion?></strong></h5>
+					<p>Maximum certification points: <strong><?=$modulo->num_puntuacion?></strong></p>
 				</div>
 			</div>
 
@@ -49,7 +49,7 @@ echo Html::beginForm( [
 	</div>
 	<div class="row">
 		<div class="col-md-6 col-md-offset-3 text-center form-group">
-			<?=Html::submitButton('<span class="ladda-label">Next</span>', ['id' => 'btn-siguinte', 'class' => 'btn btn-success btn-block ladda-button', 'data-style' => 'zoom-in', 'disabled'=>false])?>  
+			<?=Html::submitButton('<span class="ladda-label">Save</span>', ['id' => 'btn-siguinte', 'class' => 'btn btn-success btn-block ladda-button', 'data-style' => 'zoom-in', 'disabled'=>false])?>  
 		</div>
 	</div>
 </div>

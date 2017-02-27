@@ -2,33 +2,33 @@
 
 /* @var $this \yii\web\View */
 /* @var $content string */
-
-use yii\helpers\Html;
-use yii\bootstrap\Nav;
-use yii\bootstrap\NavBar;
-use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 
-AppAsset::register($this);
+use yii\helpers\Html;
+
+AppAsset::register ( $this );
 ?>
-<?php $this->beginPage() ?>
+<?php $this->beginPage()?>
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
 <head>
 <script> var basePath = '<?=Yii::$app->urlManager->createAbsoluteUrl ( [''] );?>'; </script>
-    <meta charset="<?= Yii::$app->charset ?>">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <?= Html::csrfMetaTags() ?>
+<meta charset="<?= Yii::$app->charset ?>">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+    <?= Html::csrfMetaTags()?>
     <title><?= Html::encode($this->title) ?></title>
-    <?php $this->head() ?>
+    <?php $this->head()?>
+   
 </head>
 <body class="page-register-v3 layout-full">
-<?php $this->beginBody() ?>
+<?php $this->beginBody()?>
 
         
-        <?= $content ?>
+        <?= $content?>
 
-<?php $this->endBody() ?>
+<?=$this->render('//site/contactUs')?>
+
+<?php $this->endBody()?>
 </body>
 </html>
-<?php $this->endPage() ?>
+<?php $this->endPage()?>

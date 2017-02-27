@@ -1,7 +1,7 @@
 $(document).ready(function(){
 	var minScore = 15;
 	
-	$("#js-instrucciones").html('<strong>- The minimum amount of credits required for the certificate should be greater than or equal to '+ minScore +' credits</strong>');
+	$("#js-instrucciones").html('<strong>- The minimum amount of certification points required for the certificate should be greater than or equal to '+ minScore +' points</strong>');
 	
 	$("#btn-siguinte").on('click', function(e){
 		e.preventDefault();

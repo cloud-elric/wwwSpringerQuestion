@@ -7,7 +7,7 @@ $this->registerCssFile ( '@web/webAssets/css/ver-modulos.css', [
 				\app\assets\AppAsset::className () 
 		] 
 ] );
-$puntuacionMinima = 15;
+$puntuacionMinima = 52;
 $porcentaje = 0;
 ?>
 <style>
@@ -24,51 +24,8 @@ $porcentaje = 0;
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">
-		<div class="form-group">
-		
-		<div class="panel">
-		<div class="panel-body">
-		<div class="row">
-					<?php
-					$scoreUsuario = 0;
-					if($avanceUsuario){
-						$scoreUsuario = $avanceUsuario->num_puntuacion_usuario;
-						$porcentaje = ($scoreUsuario*100)/15;
-					}
-					?>
-					<div class="col-md-8">
-					<p>Score for get certificate</p>
-					<div class="progress">
-						<div class="progress-bar progress-bar-striped active"
-							role="progressbar" aria-valuenow="<?=$scoreUsuario?>" aria-valuemin="0"
-							aria-valuemax="<?=$puntuacionMinima?>" style="width: <?=$porcentaje?>%">
-							<span class=""><?=$scoreUsuario?></span>
-						</div>
-					</div>
-					</div>
-					<div class="col-md-4">
-					<p><br></p>
-						<?php
-						$habilitarBoton = $porcentaje==100;
-						if($habilitarBoton){
-							echo Html::a('Get certificate', ['site/certificate'], ['class'=>'btn btn-primary btn-block']);
-						}else{?>
-						<a class="btn btn-primary btn-block " href="javascript: void(0)" disabled="">Get certificate</a>
-						<?php }
-						?>
-					</div>
-		</div>			
-					</div>
-		</div>
-		
-		</div>
-		</div>
-	</div>
-	
-	<div class="row">
-		<div class="col-md-12">
 		<div class="alert alert-info" role="alert" id="js-instrucciones">
-				Choose the topic that you want to do a quiz on from the list that appears:
+				Choose the topic that you want to do a quiz on from the list that appears: -> Please select the module you wish to review.
 			</div>
 		</div>
 	</div>
@@ -124,5 +81,48 @@ $porcentaje = 0;
 		<?php
 		}
 		?>
+	</div>
+	
+	<div class="row">
+		<div class="col-md-12">
+		<div class="form-group">
+		
+		<div class="panel">
+		<div class="panel-body">
+		<div class="row">
+					<?php
+					$scoreUsuario = 0;
+					if($avanceUsuario){
+						$scoreUsuario = $avanceUsuario->num_puntuacion_usuario;
+						$porcentaje = ($scoreUsuario*100)/$puntuacionMinima;
+					}
+					?>
+					<div class="col-md-8">
+					<p>Current Credits  <?=$scoreUsuario?> out of 52 Total</p>
+					<div class="progress">
+						<div class="progress-bar progress-bar-striped active"
+							role="progressbar" aria-valuenow="<?=$scoreUsuario?>" aria-valuemin="0"
+							aria-valuemax="<?=$puntuacionMinima?>" style="width: <?=$porcentaje?>%">
+							<!--  <span class=""><?=$scoreUsuario?></span>-->
+						</div>
+					</div>
+					</div>
+					<div class="col-md-4">
+					<p><br></p>
+						<?php
+						$habilitarBoton = $porcentaje>=100;
+						if($habilitarBoton){
+							echo Html::a('Get certificate', ['site/certificate'], ['class'=>'btn btn-primary btn-block']);
+						}else{?>
+						<a class="btn btn-primary btn-block " href="javascript: void(0)" disabled="">Get certificate</a>
+						<?php }
+						?>
+					</div>
+		</div>			
+					</div>
+		</div>
+		
+		</div>
+		</div>
 	</div>
 </div>
