@@ -49,11 +49,11 @@ $config = [
 	'class' => 'yii\swiftmailer\Mailer',
 	'transport' => [ 
 		'class' => 'Swift_SmtpTransport',
-		'host' => 'mail.certificaonco.com.mx', // e.g. smtp.mandrillapp.com or smtp.gmail.com
+		'host' => 'mocha4004.mochahost.com', // e.g. smtp.mandrillapp.com or smtp.gmail.com
 		'username' => 'bienvenido@certificaonco.com.mx',
 		'password' => 'bienvenido2017',
-		'port' => '2525', // Port 25 is a very common port too
-		'encryption' => 'tls' 
+		'port' => '465', // Port 25 is a very common port too
+		'encryption' => 'ssl' 
 	] 
 ],
         'log' => [

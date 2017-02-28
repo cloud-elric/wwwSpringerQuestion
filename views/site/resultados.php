@@ -38,18 +38,16 @@ foreach ( $respuestasUsuario as $respuestaUsuario ) {
 	
 	<div class="panel panel-info">
 			<div class="panel-heading">
-			<h4>Your results</h4>
+			<h5>Module Complete <span class="pull-right">You got <?=ViewUsuarioRespuesta::find()->where(['id_modulo'=>$pregunta->id_modulo, 'id_usuario'=>$respuestaUsuario->id_usuario, 'b_correcto'=>1])->count()?> correct answers out of <?=count($respuestasUsuario)?></span></h5>
 			</div>
 			<div class="panel-body">
 				<div class="row">
-					<div class="col-md-8 col-md-offset-2">
+					<div class="col-md-12">
 						<div class="row">
-							<div class="col-md-6">
-								<h4>Your score: <?=$score?$score->num_puntuacion_usuario:0?></h4>
+							<div class="col-md-6 col-md-offset-6 text-right">
+								<h4><?=$score?$score->num_puntuacion_usuario:0?> Credits earned</h4>
 							</div>
-							<div class="col-md-6">
-								<h4><?=ViewUsuarioRespuesta::find()->where(['id_modulo'=>$pregunta->id_modulo, 'id_usuario'=>$respuestaUsuario->id_usuario, 'b_correcto'=>1])->count()?> correct answer of out <?=count($respuestasUsuario)?></h4> 
-							</div>
+							
 						</div>
 					</div>
 				</div>
@@ -62,15 +60,11 @@ foreach ( $respuestasUsuario as $respuestaUsuario ) {
 	<div class="panel">
 				<div class="panel-body">
 					<div class="row">
-					<div class="col-md-12">
-							<div class="alert <?=$isCorrecta?'alert-success':'alert-danger'?>" role="alert">
-								 <?=$isCorrecta?'You answer is correct.':'You answer is wrong.'?>
-							</div>
-						</div>
+					
 						<div class="col-md-12">
 							<blockquote><?=$pregunta->num_orden?>.- <?=$pregunta->txt_descripcion . " " . $pregunta->txt_pregunta?></blockquote>
 						</div>
-						<div class="col-md-8 col-md-offset-2">
+						<div class="col-md-8">
 							<?php
 							
 							foreach($pregunta->entRespuestas as $respuestaP){
@@ -87,7 +81,15 @@ foreach ( $respuestasUsuario as $respuestaUsuario ) {
 							}
 							?>
 						</div>
-						
+						<div class="col-md-4">
+						<div class="col-md-12">
+							<div class="panel <?=$isCorrecta?'success':'danger'?>" role="alert">
+								<div class="panel-body">
+								 <?=$isCorrecta?'You answer was <h1>CORRECT</h1>':'You answer was <h1>WRONG</h1>'?>
+								 </div>
+							</div>
+						</div>
+						</div>
 						<div class="col-md-12">
 							<div class="alert alert-success">
 									<strong>Correct answer:</strong> <?=$respuestaCorrecta->txt_letra . '.-' . $respuestaCorrecta->txt_respuesta?>

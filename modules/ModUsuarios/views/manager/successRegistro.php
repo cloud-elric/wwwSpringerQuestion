@@ -25,7 +25,7 @@ Pjax::begin();
 		
 			    <h2><?= Html::encode($this->title) ?></h2>
 				<p>
-					Se ha enviado un correo eléctronico a la dirección proporcionada. En el encontrará su usuario, contraseña y un link para poder activar su cuenta. 
+					We’ve sent an e-mail to the provided address, on that e-mail please find your access password and activate your account with the given link in order to access the platform. 
 				</p>
 				<div class="col-md-12 text-right">
 					<?=Html::a('Login', ['login'])?>

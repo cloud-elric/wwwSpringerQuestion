@@ -62,7 +62,7 @@ Pjax::begin();
 				    
 				</div>
 				<div class="col-md-12 text-right">
-				<?=Html::a('Forgot password', ['peticion-pass'])?>
+				<?=Html::a('Forgot password?', ['peticion-pass'])?>
 				</div>
 				
 			</div>

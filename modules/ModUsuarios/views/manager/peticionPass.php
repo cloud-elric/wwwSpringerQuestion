@@ -33,7 +33,7 @@ Pjax::begin();
 				        <?= $form->field($model, 'username')->textInput(['placeholder' => 'Email'])->label(false) ?>
 				
 				        <div class="form-group">
-			                <?= Html::submitButton('Recuperar password', ['class' => 'btn btn-primary btn-block btn-lg margin-top-40', 'name' => 'login-button']) ?>
+			                <?= Html::submitButton('Retrieve password', ['class' => 'btn btn-primary btn-block btn-lg margin-top-40', 'name' => 'login-button']) ?>
 				        </div>
 				
 				    <?php ActiveForm::end(); ?>

@@ -25,7 +25,7 @@ $porcentaje = 0;
 	<div class="row">
 		<div class="col-md-12">
 		<div class="alert alert-info" role="alert" id="js-instrucciones">
-				Choose the topic that you want to do a quiz on from the list that appears: -> Please select the module you wish to review.
+				Please select the module you wish to review.
 			</div>
 		</div>
 	</div>

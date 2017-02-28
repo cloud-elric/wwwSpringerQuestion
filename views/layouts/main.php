@@ -25,7 +25,7 @@ AppAsset::register ( $this );
 <?php $this->beginBody()?>
  <?php
 	NavBar::begin ( [ 
-			'brandLabel' => 'My modules',
+			'brandLabel' => 'ASCO-SEP 5th Edition Online Self-assessment',
 			'brandOptions' => [ 
 					'class' => 'myclass' 
 			],

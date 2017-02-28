@@ -30,6 +30,11 @@ $this->registerJsFile ( 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/boot
 
 Pjax::begin();
 ?>
+<style>
+.panel{
+	text-align: left;
+}
+</style>
 <div class="page vertical-align text-center">
 	<div class="page-content vertical-align-middle">
 	
@@ -37,8 +42,8 @@ Pjax::begin();
 		
 			<div class="panel-body">
 		
-			    <h2><?= Html::encode($this->title) ?></h2>
-			
+			    <h2>ASCO-SEP <br><br>5th Edition Online Self-assessment</h2>
+			<br>
 			    <?= $this->render('_form', [
 			        'model' => $model,
 			    ]) ?>

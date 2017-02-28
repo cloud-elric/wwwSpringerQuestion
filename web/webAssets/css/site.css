@@ -86,3 +86,12 @@ position: absolute;
     top: 0;
     left: 0;
    }
+   
+input.js_radio_preg{
+	margin:10px 20px;
+}
+
+#btn_siguiente, #btn_anterior, #btn_finish{
+width: 100%;
+    font-size: 12pt;
+   } 

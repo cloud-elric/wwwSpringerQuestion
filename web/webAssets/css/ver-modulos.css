@@ -39,3 +39,6 @@ a.complete:active {
 .ver-modulos .panel-footer p{
 	margin:0;
 }
+.panel{
+	    overflow: hidden;
+}

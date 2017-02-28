@@ -119,7 +119,7 @@ $this->registerJs ( "
 		if($('input.js_radio_preg').is(':checked')){
 			return true;	
 		}else{
-			swal('Wait', 'To proceed select the best answer from the given options');
+			swal('Wait', 'In order to proceed you must select the best answer from the given options.');
 			boton.stop();
 			return false;	
 		}	
@@ -138,15 +138,16 @@ $this->registerJs ( "
 // 		boton.start();
 
 		swal({
-  title: 'Finished?',
+  title: 'Before you finish',
   text: 'You will not be able to recover this module',
   type: 'warning',
   showCancelButton: true,
-  confirmButtonColor: '#DD6B55',
-  confirmButtonText: 'Yes, finish',
-  cancelButtonText: 'No, I change someone answers',
+  confirmButtonColor: '#54d967',
+  //cancelButtonColor: '#DD6B55',
+  confirmButtonText: 'I\'am ok with my answers',
+  cancelButtonText: 'Wait let me go back',
   closeOnConfirm: false,
- // closeOnCancel: false
+  closeOnCancel: true
 },
 function(isConfirm){
   if (isConfirm) {
