@@ -32,20 +32,29 @@ $(document).ready(function(){
 });
 
 var numScore = 0;
+//$('.js_checkbox_modulos').on('click', function(){
+//	if($(this).is(':checked')){
+//		numScore += $(this).data('score');
+//		toastr["info"]("Min score: 15", "Selected: "+numScore);
+//	}else{
+//		numScore -= $(this).data('score');
+//		toastr["info"]("Min score: 15", "Selected: "+numScore);
+//	}
+//	console.log(numScore);
+//	
+//	if(numScore >= 15){
+//		$(':input[type="submit"]').prop('disabled', false);
+//		toastr["success"]("Puedes seguir", "Score minino completado");
+//	}else{
+//		$(':input[type="submit"]').prop('disabled', true);
+//	}
+//});
+
+
 $('.js_checkbox_modulos').on('click', function(){
-	if($(this).is(':checked')){
-		numScore += $(this).data('score');
-		toastr["info"]("Min score: 15", "Selected: "+numScore);
-	}else{
-		numScore -= $(this).data('score');
-		toastr["info"]("Min score: 15", "Selected: "+numScore);
-	}
-	console.log(numScore);
-	
-	if(numScore >= 15){
+	if($('.js_checkbox_modulos:checked').length==0){
 		$(':input[type="submit"]').prop('disabled', false);
-		toastr["success"]("Puedes seguir", "Score minino completado");
-	}else{
-		$(':input[type="submit"]').prop('disabled', true);
-	}
+		}else{
+			$(':input[type="submit"]').prop('disabled', true);
+		}
 });

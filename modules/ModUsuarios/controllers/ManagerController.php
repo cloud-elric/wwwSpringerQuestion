@@ -72,6 +72,7 @@ class ManagerController extends Controller {
 					] );
 					$parametrosEmail ['user'] = $user->getNombreCompleto ();
 					$parametrosEmail ['pass'] = $passwordGenerado;
+					$parametrosEmail['email']= $user->txt_email;
 					
 					// Envio de correo electronico
 					$utils->sendEmailActivacion ( $user->txt_email, $parametrosEmail );

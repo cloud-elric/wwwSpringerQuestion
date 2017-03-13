@@ -55,12 +55,12 @@ class EntUsuarios extends \yii\db\ActiveRecord implements IdentityInterface
 	 */
 	public function rules() {
 		return [ 
-// 				[ 
-// 						'password',
-// 						'compare',
-// 						'compareAttribute' => 'repeatPassword',
-// 						'on' => 'registerInput' 
-// 				],
+				[ 
+						'password',
+						'compare',
+						'compareAttribute' => 'repeatPassword',
+						'on' => 'cambiarPass' 
+				],
 				[ 
 						'txt_email',
 						'trim' 
