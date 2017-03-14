@@ -61,7 +61,7 @@ AppAsset::register ( $this );
 					'label' => 'Help',
 					'url' => [
 							'/site/help'
-					]],
+					], 'linkOptions' => ['target' => '_blank']],
 					 
 			] 
 	] );

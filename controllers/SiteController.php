@@ -376,8 +376,8 @@ class SiteController extends Controller {
 	}
 	
 	public function actionHelp(){
-		$path = Yii::getAlias('@web') . '/uploads';
-		return Yii::$app->response->sendFile($completePath, $filename, ['inline'=>true]);
+		$path = Yii::getAlias('@app') . '/web/files/help.pdf';
+		return Yii::$app->response->sendFile($path, 'help.pdf', ['inline'=>true]);
 	}
 	
 // 	public function actionGenerarCodigos() {
