@@ -12,7 +12,7 @@ $this->params['breadcrumbs'][] = 'Update';
 ?>
 <div class="ent-usuarios-update">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1>ASCO-SEP <br><br>5th Edition Online Self-assessment</h1>
 
     <?= $this->render('_form', [
         'model' => $model,

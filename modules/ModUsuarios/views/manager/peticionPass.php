@@ -26,7 +26,7 @@ Pjax::begin();
 			<div class="panel-body">
 
 				<div class="site-login">
-				    <h1><?= Html::encode($this->title) ?></h1>
+				    <h1>ASCO-SEP <br><br>5th Edition Online Self-assessment</h1>
 				
 				    <?php $form = ActiveForm::begin(); ?>
 				

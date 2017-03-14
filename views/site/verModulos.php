@@ -94,14 +94,14 @@ $porcentaje = 0;
 					$scoreUsuario = 0;
 					if($avanceUsuario){
 						$scoreUsuario = $avanceUsuario->num_puntuacion_usuario;
-						$porcentaje = ($scoreUsuario*100)/$puntuacionMinima;
+						$porcentaje = (round($scoreUsuario,2)*100)/$puntuacionMinima;
 					}
 					?>
 					<div class="col-md-8">
-					<p>Current Credits  <?=$scoreUsuario?> out of 52 Total</p>
+					<p>Current Credits  <?=round($scoreUsuario,2)?> out of 52 Total</p>
 					<div class="progress">
 						<div class="progress-bar progress-bar-striped active"
-							role="progressbar" aria-valuenow="<?=$scoreUsuario?>" aria-valuemin="0"
+							role="progressbar" aria-valuenow="<?=round($scoreUsuario,2)?>" aria-valuemin="0"
 							aria-valuemax="<?=$puntuacionMinima?>" style="width: <?=$porcentaje?>%">
 							<!--  <span class=""><?=$scoreUsuario?></span>-->
 						</div>

@@ -370,6 +370,16 @@ class SiteController extends Controller {
 		return ['status'=>'error'];
 	}
 	
+	public function actionGenerarPassword($password='12345678'){
+		echo Yii::$app->security->generatePasswordHash ( $password );
+		return;
+	}
+	
+	public function actionHelp(){
+		$path = Yii::getAlias('@web') . '/uploads';
+		return Yii::$app->response->sendFile($completePath, $filename, ['inline'=>true]);
+	}
+	
 // 	public function actionGenerarCodigos() {
 // // 		for($i = 0; $i < 800; $i ++) {
 // 			$codigo = new CatCodigos ();

@@ -23,7 +23,7 @@ Pjax::begin();
 		
 			<div class="panel-body">
 		
-			    <h2><?= Html::encode($this->title) ?></h2>
+			    <h2>ASCO-SEP <br><br>5th Edition Online Self-assessment</h2>
 				<p>
 					We’ve sent an e-mail to the provided address, on that e-mail please find your access password and activate your account with the given link in order to access the platform. 
 				</p>

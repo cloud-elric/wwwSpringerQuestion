@@ -12,7 +12,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="ent-usuarios-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1>ASCO-SEP <br><br>5th Edition Online Self-assessment</h1>
 
     <p>
         <?= Html::a('Update', ['update', 'id' => $model->id_usuario], ['class' => 'btn btn-primary']) ?>

@@ -23,7 +23,7 @@ Pjax::begin();
 		
 			<div class="panel-body">
 		
-			    <h2><?= Html::encode($this->title) ?></h2>
+			    <h2>ASCO-SEP <br><br>5th Edition Online Self-assessment</h2>
 				<p>
 					Se ha enviado un correo eléctronico a la dirección proporcionada. En el encontrará un link para poder recuperar su contraseña. 
 				</p>
