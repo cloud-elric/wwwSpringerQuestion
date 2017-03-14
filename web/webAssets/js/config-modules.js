@@ -1,7 +1,7 @@
 $(document).ready(function(){
 	var minScore = 15;
 	
-	$("#js-instrucciones").html('<strong>- The minimum amount of certification points required for the certificate should be greater than or equal to '+ minScore +' points</strong>');
+	$("#js-instrucciones").html('<strong> -You must select at least one category</strong>');
 	
 	$("#btn-siguinte").on('click', function(e){
 		e.preventDefault();
@@ -20,10 +20,10 @@ $(document).ready(function(){
 //	 	}else{
 //	 		swal('Wait', 'You need to select at least one option.', 'warning');
 //	 	}
-	 	if(scoreSelected>=minScore){
+		if($('.js_checkbox_modulos:checked').length>0){
 	 		$('form').submit();
 	 	}else{
-	 		swal('Wait', 'The total of the minimum score must be greater than or equal to '+minScore, 'warning');
+	 		swal('Wait', 'You must select at least one category', 'warning');
 	 	}
 	 	
 	 	l.stop();
@@ -53,8 +53,8 @@ var numScore = 0;
 
 $('.js_checkbox_modulos').on('click', function(){
 	if($('.js_checkbox_modulos:checked').length==0){
-		$(':input[type="submit"]').prop('disabled', false);
+		$('#btn-siguinte').prop('disabled', true);
 		}else{
-			$(':input[type="submit"]').prop('disabled', true);
+			$('#btn-siguinte').prop('disabled', false);
 		}
 });

@@ -110,12 +110,9 @@ $porcentaje = 0;
 					<div class="col-md-4">
 					<p><br></p>
 						<?php
-						$habilitarBoton = $porcentaje>=100;
-						if($habilitarBoton){
+						
 							echo Html::a('Get certificate', ['site/certificate'], ['class'=>'btn btn-primary btn-block']);
-						}else{?>
-						<a class="btn btn-primary btn-block " href="javascript: void(0)" disabled="">Get certificate</a>
-						<?php }
+						
 						?>
 					</div>
 		</div>			

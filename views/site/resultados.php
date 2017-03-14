@@ -34,18 +34,28 @@ foreach ( $respuestasUsuario as $respuestaUsuario ) {
 	
 	?>
 	
-	<?php if($i==1){?>
+	<?php if($i==1){
+	$totalPreguntas = count($respuestasUsuario);
+	
+	$numRespuestasCorrectas = ViewUsuarioRespuesta::find()->where(['id_modulo'=>$pregunta->id_modulo, 'id_usuario'=>$respuestaUsuario->id_usuario, 'b_correcto'=>1])->count();
+	
+	$porcentajeRespuestasCorrectas  = round($totalPreguntas/2);
+	$numPuntuacionUsuario = null;
+	if($numRespuestasCorrectas > $porcentajeRespuestasCorrectas){
+		$numPuntuacionUsuario = '2.479';
+	}
+		?>
 	
 	<div class="panel panel-info">
 			<div class="panel-heading">
-			<h5>Module Complete <span class="pull-right">You got <?=ViewUsuarioRespuesta::find()->where(['id_modulo'=>$pregunta->id_modulo, 'id_usuario'=>$respuestaUsuario->id_usuario, 'b_correcto'=>1])->count()?> correct answers out of <?=count($respuestasUsuario)?></span></h5>
+			<h5>Module Complete <span class="pull-right">You got <?=$numRespuestasCorrectas?> correct answers out of <?=$totalPreguntas?></span></h5>
 			</div>
 			<div class="panel-body">
 				<div class="row">
 					<div class="col-md-12">
 						<div class="row">
 							<div class="col-md-6 col-md-offset-6 text-right">
-								<h4><?=$score?$score->num_puntuacion_usuario:0?> Credits earned</h4>
+								<h4><?=$numPuntuacionUsuario?$numPuntuacionUsuario:($score?$score->num_puntuacion_usuario:0)?> Credits earned</h4>
 							</div>
 							
 						</div>
