@@ -10,7 +10,7 @@
 
 return [
     'class' => 'yii\db\Connection',
-    'dsn' => 'mysql:host=192.168.0.5;dbname=springer_questions',
+    'dsn' => 'mysql:host=192.168.0.7;dbname=springer_questions',
     'username' => 'root',
     'password' => 'root',
     'charset' => 'utf8',
