@@ -8,6 +8,7 @@ use app\models\ViewReporteUsuariosSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use app\models\ViewAvanceUsuario;
+use app\models\ViewScoreModuloUsuario;
 /*use yii\filters\VerbFilter;*/
 
 
@@ -54,9 +55,11 @@ class ReporteController extends Controller{
 	
 	
 	
+	
+	
 	public function actionModulosCompletados($u=null){
 		//consulta query select
-		$modulosUsuarios = ViewAvanceUsuario::find()->where(['id_usuario' => $u])->andWhere(['b_modulo_completado' => 1]) -> all();
+		$modulosUsuarios = ViewScoreModuloUsuario::find()->where(['id_usuario' => $u])->andWhere(['b_modulo_completado' => 1]) -> all();
 		 
 		/*foreach ($modulosUsuarios as $moduloUsuarios ){
 			echo $moduloUsuarios->idModulo->txt_nombre;
@@ -67,6 +70,7 @@ class ReporteController extends Controller{
 		
 			
 	}
+	
 	
 	
 	public function actionModulosIncompletados($i=null){
