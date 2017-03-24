@@ -43,7 +43,12 @@ class ReporteController extends Controller{
 	
 	
 
-
+/** busca una persona por su id en la base de datos
+ * 
+ * @param unknown $id
+ * @throws NotFoundHttpException
+ * @return personal
+ */
 	protected function findModel($id)
 	{
 		if (($model = Personal::findOne($id)) !== null) {
@@ -57,26 +62,23 @@ class ReporteController extends Controller{
 	
 	
 	
+	//metodo modulos completos e incompletos
 	public function actionModulosCompletados($u=null){
-		//consulta query select
+
+	    $this->layout=false;
 		$modulosUsuarios = ViewScoreModuloUsuario::find()->where(['id_usuario' => $u])->andWhere(['b_modulo_completado' => 1]) -> all();
-		 
-		/*foreach ($modulosUsuarios as $moduloUsuarios ){
-			echo $moduloUsuarios->idModulo->txt_nombre;
-		
-		}*/
-		
+	
 		return $this->render('modulosCompletados', ['modulosUsuarios' => $modulosUsuarios]);
-		
+	
 			
 	}
 	
-	
-	
+
 	public function actionModulosIncompletados($i=null){
-		//query select
-		$modulosUsuarios = ViewAvanceUsuario::find()->where(['id_usuario' => $i])->andWhere(['num_preguntas_faltantes' => 1]) -> all();
 		
+		$this->layout=false;
+		$modulosUsuarios = ViewAvanceUsuario::find()->where(['id_usuario' => $i])->andWhere(['num_preguntas_faltantes' => 1]) -> all();
+	
 		return $this->render('modulosIncompletados', ['modulosUsuarios' => $modulosUsuarios]);
 	}
 

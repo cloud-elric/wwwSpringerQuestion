@@ -1,7 +1,9 @@
 <div class="row">
-	<div class="col-md-6 col-md-offset-3">
+	<div class="col-md-12">
 		<div class="panel">
 			<div class="panel-body">
+			
+			
 <?php
 foreach ( $modulosUsuarios as $moduloUsuarios ) {
 	?>
@@ -17,6 +19,8 @@ foreach ( $modulosUsuarios as $moduloUsuarios ) {
 <?php } ?>
 
 </div>
+
+
 			</div>
 		</div>
 	</div>

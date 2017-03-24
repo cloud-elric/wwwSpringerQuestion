@@ -1,11 +1,27 @@
+<div class="row">
+	<div class="col-md-6 colo-md-offset-3">
+		<div class="panel">
+			<div class="panel-body">
+
 <?php
+  foreach($modulosUsuarios as $moduloUsuarios){ ?>
 
 
-/**
- vista de los datos del usuario
- */
+            <div class="row">
+                     <div class="col-md-12">
+                         <?=$moduloUsuarios->idModulo->txt_nombre; ?>
+                     </div>
 
-foreach ($modulosUsuarios as $moduloUsuarios ){
-	echo $moduloUsuarios->idModulo->txt_nombre;
+<?php  } ?>
 
-}
+             </div>
+       </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
