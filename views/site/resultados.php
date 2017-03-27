@@ -55,7 +55,7 @@ foreach ( $respuestasUsuario as $respuestaUsuario ) {
 					<div class="col-md-12">
 						<div class="row">
 							<div class="col-md-6 col-md-offset-6 text-right">
-								<h4><?=$numPuntuacionUsuario?$numPuntuacionUsuario:($score?$score->num_puntuacion_usuario:0)?> Credits earned</h4>
+								<h4><?=$numPuntuacionUsuario?$numPuntuacionUsuario:($score?round($score->num_puntuacion_usuario, 2):0)?> Credits earned</h4>
 							</div>
 							
 						</div>

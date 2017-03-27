@@ -1,6 +1,7 @@
 <?php 
 use app\models\ContactUs;
 use yii\bootstrap\ActiveForm;
+use yii\bootstrap\Modal;
 ?>
 
  <style>
@@ -37,7 +38,7 @@ use yii\bootstrap\ActiveForm;
 					] );
 					?>
 				<div class="modal-body">
-					<div class="container">
+					<div class="container-fluid">
 						<div class="row">
 
 
@@ -59,3 +60,4 @@ use yii\bootstrap\ActiveForm;
 			</div>
 		</div>
 	</div>
+	 

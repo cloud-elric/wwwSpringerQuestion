@@ -18,7 +18,13 @@ AppAsset::register ( $this );
     <?= Html::csrfMetaTags()?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head()?>
-   
+  <?php 
+  $this->registerJsFile('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js',  [
+		'depends' => [
+				\app\assets\AppAsset::className ()
+		]
+] )
+  ?> 
 </head>
 <body class="page-register-v3 layout-full">
 <?php $this->beginBody()?>

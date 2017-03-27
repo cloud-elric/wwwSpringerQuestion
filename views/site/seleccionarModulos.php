@@ -66,7 +66,7 @@ $this->registerJsFile ( '@web/webAssets/js/toastr.js', [
 					
 				</div>
 				<div class="panel-footer">
-					<p>Maximum certification points: <strong><?=$modulo->num_puntuacion?></strong></p>
+					<p>Maximum certification points: <strong><?=round($modulo->num_puntuacion, 2, PHP_ROUND_HALF_DOWN)?></strong></p>
 				</div>
 			</div>
 
