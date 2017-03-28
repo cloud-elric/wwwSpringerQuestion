@@ -43,11 +43,11 @@ class ViewReporteUsuarios extends \yii\db\ActiveRecord
     {
         return [
             'id_usuario' => 'Id Usuario',
-            'txt_nombre_completo' => 'Txt Nombre Completo',
-            'num_modulos_incompletos' => 'Num Modulos Incompletos',
-            'num_modulos_completos' => 'Num Modulos Completos',
-            'num_puntuacion_usuario' => 'Num Puntuacion Usuario',
-            'b_emitio_certificado' => 'B Emitio Certificado',
+            'txt_nombre_completo' => 'Nombre',
+            'num_modulos_incompletos' => '# Módulos incompletos',
+            'num_modulos_completos' => '# Módulos Completos',
+            'num_puntuacion_usuario' => 'Puntuación',
+            'b_emitio_certificado' => 'Emitio certificado',
         ];
     }
     
