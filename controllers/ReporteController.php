@@ -70,12 +70,9 @@ class ReporteController extends Controller {
 			$arrayCsv [$i] ['emitioCertificado'] = $data->b_emitio_certificado;
 			
 			$i++;
-		}
-		
-		
+		}		
 	//print_r($arrayCsv );
 	//exit ();
-		
 		$this->downloadSendHeaders ( 'reporte.csv' );
 		
 		$this->array2Csv ( $reporteUsuario );
