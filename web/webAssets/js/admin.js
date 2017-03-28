@@ -30,7 +30,7 @@ $(document).ready(function(){
     });//fin del query ver-modulos-completos
 	
 	
-
+ /*jquery para numeros incompletos por clase*/
 	$('.ver-modulo-incompletos').on('click', function(e){
 		
 	
