@@ -116,6 +116,8 @@ $this->registerJsFile ( '@web/webAssets/js/admin.js', [
         ],
     ]); ?>
     
+    
+    
   
   <!-- Modal -->
 <div class="modal fade" id="modal-modulos-completos" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

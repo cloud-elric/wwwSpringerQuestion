@@ -58,26 +58,27 @@ class ReporteController extends Controller {
 		
 		$reporteUsuario = ViewReporteUsuarios::find ()->all ();
 		
-		
 		$arrayCsv = [ ];
 		$i = 0;
+		
 		foreach ( $reporteUsuario as $data ) {
+			
 			$arrayCsv [$i] ['nombreCompleto'] = $data->txt_nombre_completo;
 			$arrayCsv [$i] ['modulosIncompletos'] = $data->num_modulos_incompletos;
 			$arrayCsv [$i] ['modulosCompletos'] = $data->num_modulos_completos;
 			$arrayCsv [$i] ['puntuacionUsuario'] = $data->num_puntuacion_usuario;
 			$arrayCsv [$i] ['emitioCertificado'] = $data->b_emitio_certificado;
 			
-			$i ++;
+			$i++;
 		}
 		
 		
-// 		print_r($arrayCsv );
-// 		exit ();
+	//print_r($arrayCsv );
+	//exit ();
 		
 		$this->downloadSendHeaders ( 'reporte.csv' );
 		
-		$this->array2Csv ( $arrayCsv );
+		$this->array2Csv ( $reporteUsuario );
 		
 		exit ();
 	}
@@ -100,11 +101,13 @@ class ReporteController extends Controller {
 				'Emitio certificado' 
 		]
 		 );
-// 		foreach ( $array as $row ) {
-// 			fputcsv ( $df, $row );
-// 		}
+	//foreach ( $array as $row ) {
+	//		fputcsv ( $df, $row );
+	//	}
 		fclose ( $df );
 	}
+	
+	
 	
 	
 	private function downloadSendHeaders($filename) {
