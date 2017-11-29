@@ -104,6 +104,8 @@ class SiteController extends Controller {
 	
 	public function actionCertificate(){
 		$usuario = Yii::$app->user->identity;
+
+		
 		
 		return $this->render('certificate');
 	}
