@@ -49,7 +49,7 @@ $totalPuntuacion = ViewScoreTotalUsuario::find()->where(['id_usuario'=>$idUsuari
 
 	<div class="row">
 		<div class="col-md-12 form-group">
-		<div class="page-certificate">
+		<div id="page-certificate" class="page-certificate">
 		<h2>El consejo Mexicano de Oncología 
 			<span>Otorga:</span> <?=round($totalPuntuacion->num_puntuacion_usuario, 2)?> puntos de recertificación al Dr:
 		</h2>

@@ -3301,8 +3301,8 @@ body {
       color: #000;
       background: #fff;
    }
-   .page-certificate {
-   		background-image: url("../images/fondo-certificado.jpg"); 
+   #page-certificate.page-certificate {
+   		background-image: url("../images/fondo-certificado.jpg") !important; 
    }
 }
 
