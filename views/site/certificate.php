@@ -50,6 +50,63 @@ $totalPuntuacion = ViewScoreTotalUsuario::find()->where(['id_usuario'=>$idUsuari
 	<div class="row">
 		<div class="col-md-12 form-group">
 		<div id="page-certificate" class="page-certificate">
+		<?php
+		setlocale(LC_ALL,"es_ES");
+		$dia = date('d');
+		$mes = date('n');
+		$anio = date('Y');
+
+		switch($mes){
+			case 1:
+			$mes = "Enero";
+			break;
+			
+			case 2:
+			$mes = "Febrero";
+			break;
+
+			case 3:
+			$mes = "Marzo";
+			break;
+
+			case 4:
+			$mes = "Abril";
+			break;
+
+			case 5:
+			$mes = "Mayo";
+			break;
+
+			case 6:
+			$mes = "Junio";
+			break;
+
+			case 7:
+			$mes = "Julio";
+			break;
+
+			case 8:
+			$mes = "Agosto";
+			break;
+
+			case 9:
+			$mes = "Septiembre";
+			break;
+
+			case 10:
+			$mes = "Octubre";
+			break;
+
+			case 11:
+			$mes = "Noviembre";
+			break;
+
+			case 12:
+			$mes = "Diciembre";
+			break;
+		}
+		?>
+		<h2>Mexico D.F. a <?=$dia?> de <?=$mes?> de <?=$anio?></h2>
 		<h2>El consejo Mexicano de Oncología 
 			<span>Otorga:</span> <?=round($totalPuntuacion->num_puntuacion_usuario, 2)?> puntos de recertificación al Dr:
 		</h2>
@@ -93,6 +150,14 @@ $this->registerJs ( "
 			$('.js-print').on('click', function(e){
 				e.preventDefault();
 				$( '.page-certificate' ).printArea();
+
+				$.ajax({
+					url:basePath+'site/usuario-certifico',
+					success:function(){
+
+					}
+				});
+
 			});
 		});
 		

@@ -15,6 +15,7 @@ use app\models\ViewModulosPuntuaje;
 use app\models\ViewScoreTotalUsuario;
 use app\models\ContactUs;
 use yii\web\Response;
+use app\modules\ModUsuarios\models\Utils;
 
 class SiteController extends Controller {
 	/**
@@ -104,8 +105,6 @@ class SiteController extends Controller {
 	
 	public function actionCertificate(){
 		$usuario = Yii::$app->user->identity;
-
-		
 		
 		return $this->render('certificate');
 	}
@@ -326,6 +325,19 @@ class SiteController extends Controller {
 			throw new NotFoundHttpException ( 'The requested page does not exist.' );
 		}
 	}
+
+	public function actionUsuarioCertifico(){
+		$usuario = Yii::$app->user->identity;
+		
+		if(!$usuario->b_emitio_certificado){
+			$usuario->b_emitio_certificado = 1;
+			$usuario->fch_certificado = Utils::getFechaActual();
+			if(!$usuario->save()){
+				print_r($usuario->errors);
+			}
+		}
+
+	}
 	
 	public function actionSeleccionarMasModulos(){
 	
@@ -370,16 +382,6 @@ class SiteController extends Controller {
 		}
 		
 		return ['status'=>'error'];
-	}
-	
-	public function actionGenerarPassword($password='12345678'){
-		echo Yii::$app->security->generatePasswordHash ( $password );
-		return;
-	}
-	
-	public function actionHelp(){
-		$path = Yii::getAlias('@app') . '/web/files/help.pdf';
-		return Yii::$app->response->sendFile($path, 'help.pdf', ['inline'=>true]);
 	}
 	
 // 	public function actionGenerarCodigos() {

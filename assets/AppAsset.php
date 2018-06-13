@@ -19,23 +19,20 @@ class AppAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         //css/site.css',
-    	
-        'css/site.min.css',
+    	'css/site.min.css',
         'webAssets/css/site.css',
     	'webAssets/plugins/ladda-bootstrap/dist/ladda-themeless.min.css',
     	'webAssets/css/sweetalert.css',
-        '//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css',
-        
+    	'//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css',
     ];
     public $js = [
     	'webAssets/plugins/ladda-bootstrap/dist/spin.min.js',
     	'webAssets/plugins/ladda-bootstrap/dist/ladda.min.js',
     	'webAssets/js/sweetalert.min.js',
-    	
     	'webAssets/js/contact-us.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',
-        //'yii\bootstrap\BootstrapAsset',
+        'yii\bootstrap\BootstrapAsset',
     ];
 }

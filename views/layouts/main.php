@@ -57,11 +57,7 @@ AppAsset::register ( $this );
 							'logout' 
 					] ) . '</li>'),
 					
-					[
-					'label' => 'Help',
-					'url' => [
-							'/site/help'
-					], 'linkOptions' => ['target' => '_blank']],
+
 					 
 			] 
 	] );

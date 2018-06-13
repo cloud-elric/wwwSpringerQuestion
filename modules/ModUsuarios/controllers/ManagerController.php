@@ -12,7 +12,7 @@ use app\modules\ModUsuarios\models\EntUsuariosActivacion;
 use app\modules\ModUsuarios\models\EntUsuariosCambioPass;
 use app\modules\ModUsuarios\models\EntUsuariosFacebook;
 use app\models\CatCodigos;
-
+use app\models\RelUsuariosCodigos;
 /**
  * Default controller for the `musuarios` module
  */
@@ -58,6 +58,12 @@ class ManagerController extends Controller {
 				
 				$codigo->b_usado = 1;
 				$codigo->save ();
+
+				$usuarioCodigo = new RelUsuariosCodigos();
+				$usuarioCodigo->id_codigo = $codigo->id_codigo;
+				$usuarioCodigo->id_usuario = $user->id_usuario;
+
+				$usuarioCodigo->save();
 				
 				if (Yii::$app->params ['modUsuarios'] ['mandarCorreoActivacion']) {
 					
@@ -183,7 +189,7 @@ class ManagerController extends Controller {
 		$usuario = $activacion->idUsuario;
 		
 		if ($usuario->id_status == EntUsuarios::STATUS_ACTIVED) {
-			return $this->goHome ();
+			//return $this->goHome ();
 		}
 		
 		$usuario->activarUsuario ();
@@ -193,6 +199,7 @@ class ManagerController extends Controller {
 			return $this->goHome ();
 		}
 	}
+
 	
 	/**
 	 * Loguea al usuario
@@ -266,6 +273,63 @@ class ManagerController extends Controller {
 		$utils = new Utils ();
 		$utils->sendEmailActivacion ();
 	}
+
+
+	public function actionReenviarActivacionProblema() {
+		$model = new EntUsuarios ( [ 
+				'scenario' => 'registerInput' 
+		] );
+		if ($model->load ( Yii::$app->request->post () )) {
+			
+			$usuario = EntUsuarios::find ()->where ( [ 
+					'txt_email' => $model->txt_email 
+			] )->one ();
+			
+			if ($usuario) {
+				$passwordGenerado = $this->randomPassword ();
+				$usuario->password = $passwordGenerado;
+				
+				if ($usuario->save ()) {
+					
+					if (Yii::$app->params ['modUsuarios'] ['mandarCorreoActivacion']) {
+						
+						$activacion = new EntUsuariosActivacion ();
+						$activacion->saveUsuarioActivacion ( $usuario->id_usuario );
+						
+						// Enviar correo de activación
+						$utils = new Utils ();
+						// Parametros para el email
+						$parametrosEmail ['url'] = Yii::$app->urlManager->createAbsoluteUrl ( [ 
+								'activar-cuenta/' . $activacion->txt_token 
+						] );
+						$parametrosEmail ['user'] = $usuario->getNombreCompleto ();
+						$parametrosEmail ['pass'] = $passwordGenerado;
+						$parametrosEmail['email']= $usuario->txt_email;
+						
+						// Envio de correo electronico
+						$utils->reSendEmailActivacion ( $usuario->txt_email, $parametrosEmail );
+						//$utils->reSendEmailActivacion ( "jose.kramis@springer.com", $parametrosEmail );
+						$this->redirect ( [ 
+								'login' 
+						] );
+					} else {
+						
+						if (Yii::$app->getUser ()->login ( $user )) {
+							return $this->goHome ();
+						}
+					}
+				}
+			} else {
+				$model->addError ( 'txt_email', 'Dirección de correo no registrado' );
+			}
+		}
+		
+		return $this->render ( 'reenviarActivacion', [ 
+				'model' => $model 
+		] );
+	}
+
+
 	public function actionReenviarActivacion() {
 		$model = new EntUsuarios ( [ 
 				'scenario' => 'registerInput' 
@@ -295,6 +359,8 @@ class ManagerController extends Controller {
 						] );
 						$parametrosEmail ['user'] = $usuario->getNombreCompleto ();
 						$parametrosEmail ['pass'] = $passwordGenerado;
+						$parametrosEmail['email']= $usuario->txt_email;
+						
 						
 						// Envio de correo electronico
 						$utils->sendEmailActivacion ( $usuario->txt_email, $parametrosEmail );

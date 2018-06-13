@@ -16,7 +16,7 @@ use yii\bootstrap\Modal;
 </style>
 	<div class="col-md-3 col-md-offset-9 container-contact-us">
 		<button class="btn btn-default btn-block" data-toggle="modal"
-			data-target="#contact-us-modal">Contact us</button>
+			data-target="#contact-us-modal">Need help?</button>
 	</div>
 
 	<!-- Modal -->

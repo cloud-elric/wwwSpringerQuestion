@@ -2,8 +2,9 @@
 
 return [
     'class' => 'yii\db\Connection',
-   'dsn' => 'mysql:host=localhost;dbname=springer_questions',
+   'dsn' => 'mysql:host=localhost;dbname=springer-cuestionarios',
     'username' => 'root',
-    'password' => '',
+    'password' => 'root',
     'charset' => 'utf8',
 ];
+
